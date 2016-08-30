@@ -1,0 +1,23 @@
+<!-- Generate an ensemble of coalescent trees from a given number of taxa. -->
+
+<beast version='2.0' namespace='master:master.model:master.conditions:master.outputs'>
+    <run spec='InheritanceEnsemble'
+	 nTraj='100'
+         verbosity='1'>
+        
+        <model spec='Model'>
+            <population spec='Population' populationName='X' id='X'/>
+            <reaction spec='Reaction' reactionName='Coalescence' rate="0.2:0, 0.1:1, 0.2:2">
+                2X:1 -> X:1
+            </reaction>
+        </model>                
+
+        <initialState spec='InitState'>
+            <lineageSeedMultiple spec='MultipleIndividuals' population='@X' copies="100"/>
+        </initialState>
+        
+        <lineageEndCondition spec='LineageEndCondition' nLineages="1"/>
+                
+        <output spec='NexusOutput' fileName='CoalescentForest_output.nexus' reverseTime="true"/>
+    </run>
+</beast>

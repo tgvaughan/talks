@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Influenza phylodynamics in NZ</title>
+
+		<meta name="description" content="Influenza phylodynamics in NZ">
+		<meta name="author" content="Tim Vaughan">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="oh_theme.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../reveal.js/css/print/pdf.css' : '../reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section class="titlepage">
+                    <div class="title">
+                        <h3>Exploring the Phylodynamics of seasonal influenza in New&nbsp;Zealand</h3>
+                    </div>
+
+                    <div class="authors"><u>Tim&nbsp;Vaughan</u>, David&nbsp;Welch, Alexei&nbsp;Drummond</div>
+                    <div class="institution">
+                        <img data-src="UoA_logo.svg" width="250"/>
+                    </div>
+
+                    <div class="authors">Richard&nbsp;Hall, Sue&nbsp;Huang, Nicole&nbsp;More, John&nbsp;Barnes</div>
+                    <div class="institution">
+                        <img data-src="ESR_logo.svg" height="80"/> <img data-src="US_CDC_logo.svg" height="80"/>
+                    </div>
+
+                    <div class="meeting">One Health Symposium, Wellington, March 2016</div>
+				</section>
+
+                <section>
+                    <h2>Phylodynamics</h2>
+
+                    <ul>
+                        <li class="fragment">Term introduced by Grenfell et al. (Science, 2004)</li>
+                        <li class="fragment">Refers to the interplay between "immunodynamics,
+                            epidemiology and evolutionary biology", and the
+                            effect this has on the shape of pathogen
+                            phylogenies.
+                    </ul>
+
+                    <div class="fragment figure">
+                        <img data-src="phylodynamics.png"/>
+                        <div class="cite">Volz and Bedford, 2013</div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Influenza</h2>
+
+                    <div style='float:left;width:80%'>
+                        <ul>
+                            <li class="fragment">RNA virus with a 14 kb genome
+                                consisting of 8 distinct segments.</li>
+                            <li class="fragment">Evolving $\sim 10^6$ times faster than human
+                                genome: measurably evolving pathogen.</li>
+                            <li class="fragment">Seasonal epidemics occur
+                                repeatably around the world in predictable
+                                order.</li>
+                        </ul>
+                    </div>
+                    <div style="float:right;width:20%">
+                        <img data-src="sneeze.png"/>
+                    </div>
+
+                    &nbsp;
+
+                    <br>
+                    <br>
+
+                    <blockquote class="fragment">
+                        Perfect system for the application of phylodynamic methods.
+                    </blockquote>
+
+                </section>
+
+                <!--section>
+                    <img data-src="SHIVERS_logo.jpg" style="box-shadow:none">
+
+                    <ul>
+                        <li class="fragment">ESR-led project funded by the US
+                            CDC.</li>
+                        <li class="fragment">Aims to "evaluate
+                            influenza disease burden, epidemiology, ... [and]
+                            measure effectiveness of prevention strategies such
+                            as vaccination".</li>
+                        <li class="fragment">NZ is the influenza "canary"
+                            for the Northern Hemisphere.</li>
+                        <li class="fragment">Approximately 150 H3N2 genomes
+                            sampled over 3 seasons from among the 20 New
+                            Zealand district health boards (DHBs)</li>
+                        <li class="fragment">This is the result of a pilot sequencing exercise.</li>
+                    </ul>
+                </section-->
+
+                <section>
+                    <h2>Questions</h2>
+
+                    <br>
+
+                    <blockquote class="fragment">Can the evolution be explained
+                        by an unstructured model of <b>prevalence dynamics</b>?</blockquote>
+
+                    <br>
+
+                    <blockquote class="fragment">If not, how does <b>population
+                            structure</b> influence the pathogen evolution?</blockquote>
+
+                    <br>
+
+                    <blockquote class="fragment">Is there evidence for <b>multiple
+                            introductions</b> during a single season?</blockquote>
+                </section>
+
+                <section>
+                    <section class="center">
+                        <h2>Inferring prevalence dynamics</h2>
+                    </section>
+
+                    <section>
+                        <h3>The SIR model</h3>
+
+                        <ul>
+                            <li class="fragment"><b>S</b>usceptible-<b>I</b>nfectious-<b>R</b>emoved</li>
+                            <li class="fragment">Described graphically as a Stochastic Petri Network:</li>
+                        </ul>
+
+                        <img class="fragment" style="padding: 10px; margin-right: 10px; vertical-align: middle" data-src="SPN.svg"/>
+                        <img class="fragment" style="margin-left: 10px; vertical-align: middle; width: 480px" data-src="SIR_output.png"/>
+                    </section>
+
+                    <section>
+                        <h3>Relationship between SIR model and genetic&nbsp;data</h3>
+
+                        <ul>
+                            <li class="fragment">The SIR model and sampling process generates an epidemic <em>trajectory</em> $C$
+                                including sampling events.</li>
+                            <li class="fragment">The generates a sampled transmission tree $T$.</li>
+                            <li class="fragment">Influenza genes evolve down this tree to produce an alignment $A$.</li>
+                        </ul>
+
+                        <p class="fragment">
+                        \[ P(T,C|A) \propto P(A|T) P(T|C) P(C|\theta) P(\theta) \]
+                        </p>
+
+                        <blockquote class="fragment alert">How do we sample the $(T,C)$ state space?</blockquote>
+                        <blockquote class="fragment">See David Welch's talk this afternoon!</blockquote>
+                    </section>
+
+                    <section>
+                        <h3>SIR prevalence from SHIVERS data</h3>
+                        <ul>
+                            <li class="fragment">Restrict analysis to 2012 genomes only.</li>
+                            <li class="fragment">Sampling occurs at a rate
+                            proportional to prevalence during the sampled
+                            months, is zero at other times.</li>
+                        </ul>
+
+                        <!--img class="fragment" width="800" height="400" data-src="prevalence.png"-->
+                        <div style="position:relative; width:800px; height:400px; margin:0 auto;">
+                            <img class="fragment current-visible" width="800" height="400"
+                                data-src="prevalence.png"
+                                style="position:absolute;top:0;left:0;" />
+                            <img class="fragment current-visible" width="800" height="400"
+                                data-src="prevalence_tree.png"
+                                style="position:absolute;top:0;left:0;" />
+                            <div class="figure fragment"
+                                style="position:absolute;top:0;left:0;">
+                                <img width="800" data-src="shivers_prevalence_2012.svg"/>
+                                <div class="cite">SHIVERS Year 1 April Report</div>
+                            </div>
+                        </div>
+
+                    </section>
+                </section>
+
+                <section>
+                    <section class="center">
+                        <h2>Phylogeography of seasonal epidemics</h2>
+                    </section>
+
+                    <section>
+                        <h3>Potential for phylogeographic analyses</h3>
+                        <ul>
+                            <li class="fragment">Each SHIVERS genome tagged with location down to DHB-level.</li>
+                            <li class="fragment">Have evaluated two distinct phylogeographic inference methods:
+                                <ol>
+                                    <li class="fragment">Discrete trait phylogeography ("mugration") model. <a class="cite">[Lemey, Rambaut and Drummond, 2009]</a></li>
+                                    <li class="fragment">Structured coalescent model.<br>
+                                        <a class="cite">[Hudson, 1990; Notohara, 1990]</a></li>
+                                </ol>
+                            </li>
+                        </ul>
+
+                        <blockquote class="fragment">Neither of these models deal explicitly
+                            with the epidemiological dynamics: to do!</blockquote>
+                    </section>
+
+                    <section>
+                        <h3>Mugration results (DHB, 2012)</h3>
+
+                        <img data-src="summary_DHB.svg" style="height:600px"/>
+                    </section>
+
+
+                    <section>
+                        <h3>SC results (North/South, 2012)</h3>
+
+                        <img data-src="summary_NS_2012.svg" style="width:500px;height:600px"/>
+                        <img data-src="2012_NS_popsizes.png" style="height:600px"/>
+                    </section>
+
+                    <section>
+                        <h3>SC results (North/South, 2013)</h3>
+
+                        <img data-src="summary_NS_2013.svg" style="width:500px;height:600px"/>
+                        <img data-src="2013_NS_popsizes.png" style="height:600px"/>
+                    </section>
+
+                    <section>
+                        <h3>SC results (North/South, 2014)</h3>
+
+                        <img data-src="summary_NS_2014.svg" style="width:500px;height:600px"/>
+                        <img data-src="2014_NS_popsizes.png" style="height:600px"/>
+                    </section>
+
+                </section>
+
+                <section>
+                    <section class="center">
+                        <h2>Detecting multiple introductions</h2>
+                    </section>
+
+                    <section>
+                        <h3>Qualitative evidence</h3>
+
+                        <blockquote>Summary tree lineage count at the season start
+                            is a rough estimate for the
+                            introduction count.</blockquote>
+
+                        <div class="fragment figure inline">
+                            <img data-src="summary_NS_2012_count.svg" style="width:300px;height:400px"/>
+                            <div class="caption">8</div>
+                        </div>
+                        <div class="fragment figure inline">
+                            <img data-src="summary_NS_2013_count.svg" style="width:300px;height:400px"/>
+                            <div class="caption">8</div>
+                        </div>
+                        <div class="fragment figure inline">
+                            <img data-src="summary_NS_2014_count.svg" style="width:300px;height:400px"/>
+                            <div class="caption">10</div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Semi-quantitative evidence</h3>
+
+                        <blockquote>Use distribution of sampled tree lineage counts
+                            at season start as proxy for intro. count
+                            posterior.</blockquote>
+
+                        <div class="fragment figure inline">
+                            <img data-src="nextant_2012.png" style="width:300px;height:400px"/>
+                        </div>
+                        <div class="fragment figure inline">
+                            <img data-src="nextant_2013.png" style="width:300px;height:400px"/>
+                        </div>
+                        <div class="fragment figure inline">
+                            <img data-src="nextant_2014.png" style="width:300px;height:400px"/>
+                        </div>
+
+                    </section>
+
+                    <section>
+                        <h3>North/South/World model</h3>
+
+                        <blockquote>Use structured coalescent model to
+                        explicitly model introductions using an additional
+                        World deme.</blockquote>
+
+                        <img data-src="example_NSW_tree.svg"/>
+
+                    </section>
+
+                    <section>
+                        <h3>Posterior for 2012 introductions</h3>
+
+                        <img data-src="intro_posterior.png"/>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>Summary</h2>
+
+                    <ol>
+                        <li class="fragment">Seasonal influenza evolution is <em>not</em> well
+                            described by an unstructured compartmental model.
+                        </li>
+                        <li class="fragment">Population structure, particularly the North/South
+                            island split, shapes the evolution.</li>
+                        <li class="fragment">There does seem to be evidence for multiple
+                            introductions within a single season.</li>
+                    </ol>
+
+                    <br>
+                    <br>
+
+                    <blockquote class="fragment">Thank you for listening!</blockquote>
+                </section>
+
+			</div>
+
+		</div>
+
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: false,
+				history: true,
+				center: false,
+                mouseWheel: true,
+
+				transition: 'none', // none/fade/slide/convex/concave/zoom
+
+                math: {
+                    mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
+                    config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+                },
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal.js/plugin/zoom-js/zoom.js', async: true },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true },
+                    { src: '../reveal.js/plugin/math/math.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

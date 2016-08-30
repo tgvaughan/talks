@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title></title>
+
+    <meta name="description" content="Influenza phylodynamics in NZ">
+    <meta name="author" content="Tim Vaughan">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="../reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="veme_theme.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '../reveal.js/css/print/pdf.css' : '../reveal.js/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section class="titlepage">
+          <div class="title">
+            <h3>A practical introduction to epidemiological inference
+              in <img style="box-shadow:none;background-color:#00000000" data-src="beast2-logo.png"></h3>
+
+          </div>
+
+
+          <div class="authors">Tim&nbsp;Vaughan</div>
+          <div class="institution">
+            Centre for Computational Evolution,<br>
+            The University of Auckland, New Zealand
+
+            <br>
+            
+            <img data-src="UoA_logo.svg" width="250"/>
+          </div>
+
+          <div class="meeting">21<sup>st</sup> International Bioinformatics Workshop on<br> Virus Evolution and Molecular Epidemiology<br>
+            Seoul, Republic of Korea, 2016</div>
+        </section>
+
+        <section>
+          <h2>Outline</h2>
+
+          <br>
+
+          <div class="fragment">
+          <h4>Part 1</h4>
+          <ul>
+            <li>Epidemiolgically relevant models in BEAST 2</li>
+            <li>Other new features of BEAST 2</li>
+          </ul>
+
+          <br>
+          <br>
+          <br>
+          </div>
+
+          <div class="fragment">
+          <h4>Part 2</h4>
+          <ul>
+            <li>Tutorial 1: Inferring geographical Influenza dynamics</li>
+            <li>Tutorial 2: Inferring dynamics of Egyptian HCV</li>
+          </ul>
+          </div>
+        </section>
+
+        <section>
+          <h3>BEAST 2 Usage Patterns</h3>
+
+          <div style="position:relative; width:800px; height:600px; margin:0 auto;">
+            <img class="fragment current-visible"
+                 data-src="commonUsage.png" width="800"
+                 style="position:absolute;top:0;left:0;" />
+            <img class="fragment current-visible"
+                 data-src="lessCommonUsage.png" width="800"
+                 style="position:absolute;top:0;left:0;" />
+            <img class="fragment current-visible"
+                 data-src="lessCommonUsage2.png" width="800"
+                 style="position:absolute;top:0;left:0;" />
+            <img class="fragment current-visible"
+                 data-src="lessCommonUsage4.png" width="800"
+                 style="position:absolute;top:0;left:0;" />
+          </div>
+
+        </section>
+
+        <section>
+          <h3>BEAST 2 Packages</h3>
+
+          <ul>
+            <li>Packages contain much of the utility of BEAST 2.</li>
+            <li class="fragment">Packages are accessible via the built-in Package Manager. To access this,
+              open BEAUti and select Manage Packages from the File menu.</li>
+          </ul>
+
+          <img class="fragment" data-src="PM1.png">
+
+        </section>
+
+        <section>
+          <img data-src="PM2.png">
+
+          <br>
+
+          The number of available packages is growing!
+        </section>
+
+        <section>
+          <section class="center">
+            <h2>Overview of epidemiologically relevant models in BEAST 2</h2>
+          </section>
+
+          <section>
+            <h3>Birth-death skyline model</h3>
+
+            
+            <div style='float:left;width:50%'>
+            <ul>
+              <li>Piecewise-constant rate variation of the Birth/Death model parameters.</li>
+              <li class="fragment">Since effective reproductive number $R_e=\lambda/\delta$
+              can infer variation in $R_e$.
+              <li class="fragment">Has been used to recover the effect of
+              contaminated injections on the Egyptian HCV epidemic.</li>
+            </ul>
+            </div>
+            <div style="float:right;width:50%">
+              <div class="figure">
+              <img data-src="BDSKY.jpg"/>
+              <div class="cite">Stadler et al., PNAS (2012)</div>
+              </div>
+            </div>
+
+            <div style="float:left; width:100%;">
+              <div class="package">
+                BEAST 2 Package: <a>BDSKY</a>
+            </div>
+          </section>
+
+          <section>
+            <h3>Birth-death SIR model</h3>
+
+            <ul>
+              <li>Parametric extension to the BDSKY model.</li>
+              <li class="fragment">Piecewise constant variation in birth and death
+              rates driven by discretized stochastic SIR model:</li>
+            </ul>
+
+            <img class="fragment" style="padding: 10px; margin-right: 10px; vertical-align: middle" 
+                 data-src="SPN.svg"/>
+            <img class="fragment" style="margin-left: 10px; vertical-align: middle; width: 480px" data-src="SIR_output.png"/>
+          </section>
+
+          <section>
+            <h3>Birth-death SIR model</h3>
+
+            <img style="padding:10px;margin-right:10px;vertical-align:middle;height:400px" 
+                 data-src="UKHIVTraj.png"/>
+            <img style="padding:10px;margin-left: 10px;vertical-align:middle;height:400px"
+                 data-src="UKHIVR0.png"/>
+
+            <br>
+
+            SIR curves, prevalence and $R_e$ of UK HIV-1 clusters.
+            <a class="cite">Kuehnert et al., JRS Interface, 2014</a><br>
+            <br>
+
+            <div class="package">
+              BEAST 2 Package: <a>phylodynamics</a>
+            </div>
+          </section>
+            
+          <section>
+            <h3>Structured Coalescent</h3>
+
+            <div style='float:left;width:65%'>
+              <ul>
+                <li>A simple means of modelling population structure
+                  in phylogenetic inference.</li>
+                <li class="fragment">Assumes  population is divided into
+                  constant-sized sub-populations with
+                  migration between them.</li>
+                <li class="fragment">Model gives rise to trees coloured by ancestral locations.</li>
+                <li class="fragment">Properly conditions on sample locations without introducing bias
+                  <a class="cite" href="http://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1005421">De Maio et al, PLoS Genetics, 2015</a></li>
+              </ul>
+            </div>
+            <div style="float:right;width:35%">
+              <img data-src="IslandModel.svg">
+              <div class="figure">
+                <img data-src="MTT.png">
+                <div class="cite">Vaughan et al., Bioinf. (2014)</div>
+              </div>
+            </div>
+            
+          </section>
+
+          <section>
+            <h3>Structured Coalescent</h3>
+
+            <img data-src="h3n2_maxpost.svg" width="600"><br>
+            Ancestral locations, subpop sizes and substitution rate
+            inferred from H3N2 genomes. (<a class="cite" href="http://dx.doi.org/10.1093/bioinformatics/btu201">Vaughan et al., Bioinf. 2014</a>)
+
+            <div style="float:left; width:100%;">
+              <div class="package">
+                BEAST 2 Package: <a>MultiTypeTree</a>
+            </div>
+          </section>
+
+          <section>
+            <h3>Approximate structured coalescent</h3>
+
+            <div style="float:left;width:60%">
+              <ul>
+                <li>Computational burden of SC analyses restricts total number of demes.</li>
+                <li class="fragment">Recent approximation by <a href="http://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1005421" class="cite">De Maio et al.</a> raises the practical limit from ~4 to ~10.</li>
+                <li class="fragment">Example analyses include phylogeography of Tomato Yellow Leaf Curl Virus (TYLCV), involving 8 distinct locations.
+              </ul>
+            </div>
+            <div class="figure" style="float:right;width:40%">
+              <img data-src="BASTA.png">
+              <div class="cite">De Maio et al., PLoS Genetics, 2016</div>
+            </div>
+
+            <div style="float:left; width:100%;">
+              <br>
+              <div class="package">
+                BEAST 2 Package: <a>BASTA</a>
+            </div>
+          </section>
+
+          <section>
+            <h3>Birth-death Migration Model</h3>
+
+            <ul>
+              <li>Versatile structured stochastic model
+              based on the BDSKY model.</li>
+              <li class="fragment">Can usefully model both spatial structuring of host
+              population as well as structuring due to infection
+              classes (e.g. exposed vs infectious).</li>
+              <li class="fragment">Like the BDSKY model, supports piecewise-constant
+                rate variation.</li>
+            </ul>
+
+            <div class="figure fragment">
+              <img data-src="BDMM_models.jpg" style="width:100%">
+              <div class="cite">Kuehnert et al., MBE, 2016</div>
+            </div>
+
+          </section>
+
+          <section>
+            <h3>Birth-death Migration Model</h3>
+
+            <img data-src="BDMM_results.jpg" style="width:50%"><br>
+            <div style="font-size:x-large">Spatial and temporal variation in effective reproductive
+            number of H3N2.</div>
+
+            <div style="float:left; width:100%; padding-top:20px">
+              <div class="package">
+                BEAST 2 Package: <a>BDMM</a>
+            </div>
+          </section>
+
+          <section>
+            <h3>ClonalOrigin Model</h3>
+
+            <div style="float:left;width:60%">
+              <ul>
+                <li>Coalescent-based model developed by <a href="http://dx.doi.org/10.1534/genetics.110.120121" class="cite">Didelot et al. (Genetics, 2010)</a> to describe homologous gene conversion in bacterial populations.</li>
+                <li class="fragment">Implementation in BEAST 2 allows joint inference
+                of the clonal frame, recombinations and model
+                parameters including the recombination rate, using a variety of substitution models and priors.</li>
+              </ul>
+            </div>
+            <div style="float:left;width:40%">
+              <div class="figure">
+                <img data-src="CO_model.png">
+                <div class="cite">Vaughan et al., bioRxiv:059105</div>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h3>ClonalOrigin Model</h3>
+
+            <div style="float:left;width:50%">
+              <ul>
+                <li>Application to rMLST genes sequenced from <i>E.&nbsp;coli</i>
+                samples collected in rural New Zealand indicates gene
+                flow from pathogenic to non-pathogenic strains.</li>
+              </ul>
+            </div>
+            
+            <div class="figure" style="float:right;width:50%">
+              <img data-src="CO_results.png">
+              <div class="cite">Vaughan et al., bioRxiv:059105</div>
+            </div>
+
+            <div style="float:left; width:100%; padding-top:30px">
+              <div class="package">
+                BEAST 2 Package: <a href="http://tgvaughan.github.io/bacter">bacter</a>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section class="center">
+            <h2>Sampling of other new features in BEAST 2</h2>
+          </section>
+
+          <section>
+            <h3>Bayesian substitution model selection</h3>
+
+            <div style="float:left;width:50%;text-align:left;">
+              Bayesian model averaging over:
+              <ul>
+                <li class="fragment">Substitution model</li>
+                <li class="fragment">Rate parameters</li>
+                <li class="fragment">Estimated/equal frequencies</li>
+                <li class="fragment">With/without gamma rate variation</li>
+                <li class="fragment">With/without invariant sites</li>
+              </ul>
+            </div>
+            <div class="figure" style="float:right;width:50%">
+              <img data-src="bModelTest.png">
+              <div class="cite">Bouckaert &amp; Drummond, bioRxiv:020792</div>
+            </div>
+
+            <div class="package" style="margin-top:50px;float:left;width:100%">
+              BEAST 2 Package: <a>bModelTest</a>
+            </div>
+          </section>
+
+          <section>
+            <h3>Improved support for heterotachy</h3>
+
+            <div style="float:left;width:55%;">
+              <ul>
+                <li>Single $\Gamma$ site model.</li>
+                <li class="fragment">Multi $\Gamma$ site model: one
+                  shape param $\alpha$ per branch</li>
+                <li class="fragment">Relaxed $\Gamma$ site model: sample $\alpha$ from distribution</li>
+                <li class="fragment">Better fit for many models.</li>
+                <li class="fragment">Significantly different root ages.</li>
+              </ul>
+            </div>
+
+            <div class="figure" style="float:right;width:45%">
+              Algae/green plants age
+              <img data-src="MGSM.svg">
+              <div class="cite">Bouckaert &amp; Lockhart, bioRxiv:018101</div>
+            </div>
+
+            <div class="package" style="margin-top:100px;float:left;width:100%">
+              BEAST 2 Package: <a>MGSM</a>
+            </div>
+          </section>
+
+          <section>
+            <h3>Fossilised Birth Death model</h3>
+
+            <ul>
+              <li>Named for its macroevolutionary application, this is
+              also applicable to the combination of genetic and
+              incidence-only data in phylodynamic analyses.</li>
+            </ul>
+
+            <div class="figure">
+              <img data-src="FBD.png">
+              <div class="cite">Gavryushkina et al., PLoS Comp Bio. 2014</div>
+            </div>
+
+            <div class="package" style="margin-top:25px">
+              BEAST 2 Package: <a>SA</a>
+            </div>
+          </section>
+
+          <section>
+            <h3>Likelihood computation efficiency</h3>
+
+            <div style="float:left;width:40%">
+              <ul>
+                <li>No overhead when using invariant sites category.</li>
+                <li class="fragment">Be sure to use threads!</li>
+                <li class="fragment">Use BEAGLE library with <tt>-beagle_SSE</tt> option.
+              </ul>
+            </div>
+            <div class="figure" style="float:right;width:60%">
+              <img data-src="perf.png">
+            </div>
+
+            <div class="package" style="float:left;width:100%;margin-top:50px">
+              BEAST 2 Package: <a>All packages!</a>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section class="center">
+            <h2>Tutorials</h2>
+          </section>
+
+          <section class="center">
+            <h3>Tutorial 1:<br>
+              Geographical Influenza dynamics</h3>
+
+            <br>
+
+            <div style="text-align:left">
+              Instructions:
+              <blockquote>
+                <ol>
+                  <li>Locate the tutorial at
+                    <a href="https://github.com/tgvaughan/MultiTypeTree/wiki/Beginner%27s-Tutorial-%28short-version%29">github.com/tgvaughan/MultiTypeTree/wiki/Beginner's-Tutorial-(short-version)</a></li>
+                  <li>Follow along with me!</li>
+                </ol>
+              </blockquote>
+            </div>
+          </section>
+
+          <section class="center">
+
+            <h3>Tutorial 2:<br>
+              Global dynamics of RSVA</h3>
+
+            <br>
+
+            <div style="text-align:left">
+              Instructions:
+              <blockquote>
+                <ol>
+                  <li>Download the tutorial archive from
+                    <a href="http://tgvaughan.github.com/talks/VEME2016/SkylineTutorial.zip">tgvaughan.github.io/talks/VEME2016/SkylineTutorial.zip</a></li>
+                  <li>Extract the contents of this archive.</li>
+                  <li>Open the file Skyline.pdf with a PDF viewer.</li>
+                  <li>Follow along with me!</li>
+                </ol>
+              </blockquote>
+              (Note: we might not complete this tutorial due to time constraints.)
+            </div>
+          </section>
+
+        </section>
+      </div>
+
+    </div>
+
+    <script src="../reveal.js/lib/js/head.min.js"></script>
+    <script src="../reveal.js/js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+      controls: true,
+      progress: false,
+      history: true,
+      center: false,
+      mouseWheel: true,
+
+      transition: 'none', // none/fade/slide/convex/concave/zoom
+
+      math: {
+      mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
+      config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+      },
+
+      // Optional reveal.js plugins
+      dependencies: [
+      { src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: '../reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: '../reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: '../reveal.js/plugin/zoom-js/zoom.js', async: true },
+      { src: '../reveal.js/plugin/notes/notes.js', async: true },
+      { src: '../reveal.js/plugin/math/math.js', async: true }
+      ]
+      });
+
+    </script>
+
+  </body>
+</html>
