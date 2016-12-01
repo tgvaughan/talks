@@ -416,28 +416,176 @@
                     </section>
 
                     <section>
-                        <h3>Discrete Phylogeography (mugration)</h3>
+                        <h3>Discrete Phylogeography</h3>
+
+                        <p>Required packages:</p>
+                        <blockquote>
+                            <ul>
+                                <li>BEAST_CLASSIC</li>
+                            </ul>
+                        </blockquote>
+
+                        <br>
+
+                        <ul>
+                            <li>Very well supported, BEAUti analysis setup.</li>
+                            <li>Tutorial on <a href="http://beast2.org/tutorials">beast2.org/tutorials</a>.</li>
+                            <li>Very fast, allows inference of which migrations are necessary to describe data.</li>
+                            <li>Prone to sampling biases.</li>
+                        </ul>
                     </section>
 
                     <section>
-                        <h3>Continuous Phylogeography (mugration)</h3>
+                        <h3>Discrete Phylogeography</h3>
+
+                        <p>DensiTree output:</p>
+                        <img data-src="coloured_densitree.png" style="width:50%"/>
+                    </section>
+
+                    <section>
+                        <h3>Continuous Spherical Phylogeography</h3>
+
+                        <p>Required packages:</p>
+                        <blockquote>
+                            <ul>
+                                <li>GEO_SPHERE</li>
+                            </ul>
+                        </blockquote>
+
+                        <br>
+
+                        <ul>
+                            <li>Also well supported and BEAUti analysis setup.</li>
+                            <li>Tutorial on <a href="http://beast2.org/tutorials">beast2.org/tutorials</a>.</li>
+                            <li>Output can be summarized using <a href="http://kuleuven.ac.be/aidslab/phylogeography/SPREAD.html">Spread</a> and visualized using Google Earth.</li>
+
+                            <li>Prone to sampling biases.</li>
+                        </ul>
+
+                    </section>
+
+                    <section>
+                        <h3>Continuous Spherical Phylogeography</h3>
+
+                        <p>Google Earth visualization example:</p>
+                        <img data-src="ge_example.png" style="width:80%"/>
+
                     </section>
 
                     <section>
                         <h3>Structured Coalescent (Full model)</h3>
+
+                        <p>Required packages:</p>
+                        <blockquote>
+                            <ul>
+                                <li>MultiTypeTree</li>
+                            </ul>
+                        </blockquote>
+
+                        <br>
+
+                        <ul>
+                            <li>Newer analysis option, BEAUti setup.</li>
+                            <li>Tutorial at <a href="http://beast1.org/tutorials">beast2.org/tutorials</a>.</li>
+                            <li>No built-in assumptions regarding sampling procedure.</li>
+                            <li>More computationally demanding than mugration
+                                models, only smaller numbers of demes are
+                                feasible.</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>Structured Coalescent (Full model)</h3>
+                        <img data-src="fig05.svg" style="width:80%"/>
                     </section>
 
                     <section>
                         <h3>Structured Coalescent (Approximation)</h3>
+
+                        <p>Required packages:</p>
+                        <blockquote>
+                            <ul>
+                                <li>BASTA</li>
+                            </ul>
+                        </blockquote>
+
+                        <br>
+
+                        <ul>
+                            <li>Very new analysis option, <b>NO BEAUti setup</b>.</li>
+                            <li>Temporary tutorial at <a href="http://github.com/tgvaughan/MultitypeTree/wiki">gihub.com/tgvaughan/MultiTypeTree/wiki</a>.</li>
+                            <li>Approximation cuts down on the computational demands of the SC model, allowing many more locations to be considered.</li>
+                            <li>Produces very similar results to MultiTypeTree, but only samples internal node locations (not mid-edge locations).</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>Structured Coalescent (Approximation)</h3>
+
+                        <p>Comparisson between mugration implementation and full and approx. SC models.</p>
+
+                        <div class="figure">
+                            <img data-src="basta_figure.png" style="width:100%"/>
+                            <div class="cite">De Maio et al., PLoS Genetics, 2015</div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Structured Coalescent (Approximation)</h3>
+
+                        <p>Posterior comparisons:</p>
+
+                        <div class="figure">
+                            <img data-src="basta_figure2.png" style="width:80%"/>
+                            <div class="cite">De Maio et al., PLoS Genetics, 2015</div>
+                        </div>
+                    </section>
+
+
+                    <section>
+                        <h3>Birth-death Migration Model</h3>
+
+                        <p>Required packages:</p>
+                        <blockquote>
+                            <ul>
+                                <li>MASTER</li>
+                                <li>MultiTypeTree</li>
+                                <li>SA</li>
+                            </ul>
+                        </blockquote>
+
+                        <br>
+
+                        <ul>
+                            <li>While capable of performing inference, BDMM has not yet been officially released.</li>
+                            <li>Information can be found on the GitHub repository: <a href="https://github.com/denisekuehnert/bdmm">github.com/denisekuehnert/bdmm</a>.</li>
+                        </ul>
                     </section>
 
                     <section>
                         <h3>Birth-death Migration Model</h3>
+
+                        <p>Teaser: time and space-dependent rate parameter estimation!</p>
+
+                        <div style="width:100%; display:table">
+                            <div style="display: table-row">
+                                <div class="figure" style="width:600px; display:table-cell">
+                                    <img data-src="main_BDMM.png"/>
+                                </div>
+                                <div class="figure" style="width:400px; display:table-cell">
+                                    <img data-src="R0_BDMM.png"/>
+                                    <div class="cite">K&uuml;hnert et al., MBE, 2016</div>
+                                </div>
+                            </div>
+                        </div>
+
                     </section>
                 </section>
 
+
                 <section>
                     <h2>Summary</h2>
+
                 </section>
 
                 <section>
