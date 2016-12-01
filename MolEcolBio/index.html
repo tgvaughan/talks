@@ -57,49 +57,97 @@
                 <section>
                     <h2>What is Phylogeography?</h2>
 
-                    <br>
-                    <br>
-
-                    <blockquote>
-                        Phylogeography is a field of study concerned with the
-                        principles and processes governing the geographic
-                        distributions of genealogical lineages, especially
-                        those within and among closely related species.
-                    </blockquote>
-                    <div class="quote-cite">
-                        John Avise,
-                        <em>"Phylogeography: The History and Formation of Species."</em>
-                        Harvard University Press, 2000.
+                    <div style="position:relative; width:800px; margin:0 auto;">
+                        <div class="fragment current-visible">
+                            <br>
+                            <blockquote>
+                                Phylogeography is a field of study concerned with the
+                                principles and processes governing the geographic
+                                distributions of genealogical lineages, especially
+                                those within and among closely related species.
+                            </blockquote>
+                            <div class="quote-cite">
+                                John Avise,
+                                <em>"Phylogeography: The History and Formation of Species."</em>
+                                Harvard University Press, 2000.
+                            </div>
+                        </div>
+                        <div class="figure fragment" style="position:absolute; top:0; left:0;">
+                            <p>Early human migrations:</p>
+                            <img style="width:800px" data-src="Spreading_homo_sapiens_la.svg"/>
+                            <div class="cite">Wikipedia</div>
+                        </div>
                     </div>
+
                 </section>
 
                 <section>
-                    <h2>The phylogeographic inference problem</h2>
+                    <h2>Phylogeographic inference</h2>
 
-                    <p>How did ancestral populations move about?<br>
-                    Usual data:</p>
-                    
-                    <ul>
-                        <li>spatially (and temporally) tagged genetic data</li>
-                    </ul>
+                    <div style="position:relative; width:800px; margin:0 auto;">
+                        <div class="fragment current-visible">
+                            <p>Usual data:</p>
+                            <img style="width:800px" data-src="data.svg"/>
+                        </div>
+                        <div class="fragment" style="position:absolute; top:0; left:0;">
+                            <p>Common questions:</p>
+                            <div style="width:800px; height:600px; position:relative">
+                                <img style="position: absolute; top:0; left:0; width:800px;"
+                                                      data-src="questions5.svg">
+                                <img class="fragment" style="position: absolute; top:0; left:0; width:800px;"
+                                                      data-src="questions4.svg">
+                                <img class="fragment" style="position: absolute; top:0; left:0; width:800px;"
+                                                      data-src="questions3.svg">
+                                <img class="fragment" style="position: absolute; top:0; left:0; width:800px;"
+                                                      data-src="questions2.svg">
+                                <img class="fragment" style="position: absolute; top:0; left:0; width:800px;"
+                                                      data-src="questions.svg">
+                            </div>
+                        </div>
 
-                    <p>Usual questions:</p>
-                    <ul>
-                        <li> Where was the most recent common ancestor? </li>
-                        <li> How did the observed distribution of samples arise? </li>
-                        <li> What does this imply about the ancestral movement of populations? </li>
-                    </ul>
                 </section>
 
                 <section>
-                    <h2>Bayesian Phylographic Inference</h2>
+                    <h2>Bayesian Phylogeographic Inference</h2>
 
-                    <p>Bayesian inference requires a model.<br>
-                    Two classes of models:</p>
+                    <br>
+
+                    <p>The usual phylogenetic posterior:</p>
+                    <blockquote style="width:80%">
+                    $$P(T,\mu,\theta|A) = \frac{1}{P(A)} P(A|T,\mu)P(T|\theta)P(\mu)P(\theta)$$
+                    </blockquote>
                     <ul>
-                        <li> Mugration models (given tree and root location, what is the probability of my sample locations?)</li>
-                        <li> Structured population models (given sequences and locations, what is the probability of coloured tree?)</li>
+                        <li>$P(A|T,\mu)$ is the <i>tree likelihood</i></li>
+                        <li>$P(T|\theta)$ is the <i>tree prior</i></li>
+                        <li>$P(\mu)$ and $P(\theta)$ are the <i>parameter priors</i></li>
                     </ul>
+
+                    <br>
+                    <br>
+
+                    <blockquote class="fragment alert">
+                        <em>Where does geography fit in?</em>
+                    </blockquote>
+                </section>
+
+                <section>
+                    <h2>Bayesian Phylogeographic Inference</h2>
+
+                    <p>Currently two main classes of models:</p>
+                    <ol>
+                        <li> Mugration models:
+                                <ul>
+                                    <li>Given tree and root location, what is the probability of sample locations?</li>
+                                    <li>Exist in contiuous and discrete forms.</li>
+                                    <li>Developed by Phillipe Lemey et al. <a class="citep">(PLoS Comp Biol 2009, MBE 2010)</a>
+                                </ul>
+                        <li> Structured population models:
+                            <ul>
+                                <li>given sequences and locations, what is the probability of location-coloured tree?</li>
+                                <li>Currently mostly discrete.</li>
+                                <li>Earliest examples by <a class="citep">Hudson (1990)</a> and <a class="citep">Notohara (1990)</a>.</li>
+                            </ul>
+                    </ol>
                 </section>
 
                 <section>
@@ -109,23 +157,91 @@
 
                     <section>
                         <h3>Discrete mugration model</h3>
+
+                        <br>
+
+                        <div class="figure" style="position: relative; width:800px; height:600px; margin: 0 auto">
+                            <img class="fragment current-visible" style="position: absolute; top:0; left:0; width:800px;"
+                                 data-src="mugration4.svg"/>
+                            <img class="fragment current-visible" style="position: absolute; top:0; left:0; width:800px;"
+                                 data-src="mugration3.svg"/>
+                            <img class="fragment current-visible" style="position: absolute; top:0; left:0; width:800px;"
+                                 data-src="mugration2.svg"/>
+                            <img class="fragment current-visible" style="position: absolute; top:0; left:0; width:800px;"
+                                 data-src="mugration.svg"/>
+                        </div>
                     </section>
 
                     <section>
                         <h3>Inference: Modified tree likelihood</h3>
+
+                        <p>The standard phylogenetic posterior is modified:</p>
+                        <blockquote style="width:80%">
+                            \begin{align}
+                            P(T,\mu,\theta|A,L) &= \frac{1}{P(A)P(L)} P(A|T,\mu)P(L|T,M)\\
+                                &\times P(T|\theta)P(\mu)P(\theta)
+                            \end{align}
+                        </blockquote>
+                        <p>where</p>
+                        <ul>
+                            <li>$L$ are the sampled locations, and</li>
+                            <li>$M$ is a matrix specifying the random walk.</li>
+                        </ul>
+
+                        <p>Note the similarity between the two tree likelihood terms.</p>
+                        <blockquote>
+                            Mugration models treat location as just another trait/character.
+                        </blockquote>
+                    </section>
+
+                    <section>
+                        <h3>Sampling assumption</h3>
+
+                        <br>
+
+                        <p>A very important assumption made by the mugration model posterior:</p>
+                        <blockquote class="alert">
+                            Samples are assumed to be collected in a manner that is blind to their location.
+                        </blockquote>
+
+                        <ul>
+                            <li>Mugration models use sample location as data.</li>
+                            <li>Just as for genetic data, non-random sampling procedures will bias results.</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>Equivalent population genetic model</h3>
+
+                        <p>A helpful way to visualise the mugration model is to imagine its effect on the
+                        population as a whole:</p>
+
+                        <div style="position:relative; width:800px; height:400px; margin:0 auto;">
+                            <img class="fragment current-visible" width="800" data-src="WF4.svg"
+                                                                              style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none
+                                                                              ;"/>
+                            <img class="fragment current-visible" width="800" data-src="WF3.svg"
+                                                                              style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none
+                                                                              ;"/>
+                            <img class="fragment current-visible" width="800" data-src="WF2.svg"
+                                                                              style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none
+                                                                              ;"/>
+                            <img class="fragment" width="800" data-src="WF.svg"
+                                                              style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;"/>
+                        </div>
+
+                        <ul>
+                            <li class="fragment">Mugration =&gt; stochastically varying subpopulation sizes.</li>
+                            <li class="fragment">A "neutral" model.</li>
+                        </ul>
+
+
                     </section>
 
                     <section>
                         <h3>Continuous extensions</h3>
                     </section>
 
-                    <section>
-                        <h3>Sampling assumption</h3>
-                    </section>
-
-                    <section>
-                        <h3>Equivalent population genetic model</h3>
-                    </section>
                 </section>
 
                 <section>
@@ -134,19 +250,23 @@
                     </section>
 
                     <section>
-                        <h2>Structured Wright-Fisher Model</h2>
+                        <h3>Structured Wright-Fisher Model</h3>
                     </section>
 
                     <section>
-                        <h2>Structured Coalescent</h2>
+                        <h3>Structured Coalescent</h3>
                     </section>
 
                     <section>
-                        <h2>Inference: Modified tree prior</h2>
+                        <h3>Inference: Modified tree prior</h3>
                     </section>
 
                     <section>
                         <h3>Sampling assumption</h3>
+                    </section>
+
+                    <section>
+                        <h3>Birth-death Migration Model</h3>
                     </section>
                 </section>
 
@@ -169,6 +289,10 @@
 
                     <section>
                         <h3>Structured Coalescent (Approximation)</h3>
+                    </section>
+
+                    <section>
+                        <h3>Birth-death Migration Model</h3>
                     </section>
                 </section>
 

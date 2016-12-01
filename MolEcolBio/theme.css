@@ -275,9 +275,13 @@ body {
   color: #fff;
   background: #1a53a1; }
 
-.reveal a.cite {
+.reveal a.citep {
     color: #a00000;
     font-size: 0.8em;
+}
+
+.reveal a.cite {
+    color: #a00000;
 }
 
 /*********************************************
