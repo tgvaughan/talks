@@ -188,7 +188,7 @@
                             <li>$M$ is a matrix specifying the random walk.</li>
                         </ul>
 
-                        <p>Note the similarity between the two tree likelihood terms.</p>
+                        <p>Note the similarity between the two tree <b>likelihood</b> terms.</p>
                         <blockquote>
                             Mugration models treat location as just another trait/character.
                         </blockquote>
@@ -240,6 +240,25 @@
 
                     <section>
                         <h3>Continuous extensions</h3>
+
+                        <p class="fragment">Use a contiunous diffusion process
+                        in place of the discrete random walk:</p>
+
+                        <div style="width:100%; display:table">
+                            <div style="display: table-row">
+                                <div class="fragment figure" style="width:400px; display:table-cell">
+                                    <img data-src="mugration_continuous.png"/>
+                                    <div class="cite">Lemey et al., MBE, 2010</div>
+                                </div>
+                                <div class="fragment figure" style="width:400px; display:table-cell">
+                                    <img data-src="mugration_sphere.png"/>
+                                    <div class="cite">Bouckaert, PeerJ, 2016</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="fragment">Essential features of mugration
+                        model remain, <em>including sensitivity to sampling.</em></p>
                     </section>
 
                 </section>
@@ -251,22 +270,143 @@
 
                     <section>
                         <h3>Structured Wright-Fisher Model</h3>
+
+                        Imagine two sub-populations connected by weak migration:
+
+                        <div style="position:relative; width:800px; height:400px; margin:0 auto;">
+                            <img class="fragment current-visible"
+                                 style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;"
+                                 width="800" data-src="StructuredWF5.svg" />
+                            <img class="fragment current-visible"
+                                 style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;"
+                                 width="800" data-src="StructuredWF4.svg" />
+                            <img class="fragment current-visible"
+                                 style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;"
+                                 width="800" data-src="StructuredWF3.svg" />
+                            <img class="fragment current-visible"
+                                 style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;"
+                                 width="800" data-src="StructuredWF2.svg" />
+                            <img class="fragment"
+                                 style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;"
+                                 width="800" data-src="StructuredWF.svg" />
+                        </div>
+
+                        <ul>
+                            <li class="fragment">Model as described by Notohara, 1990.</li>
+                            <li class="fragment">Island populations are held constant by respective carrying capacities.</li>
+                        </ul>
+
+
                     </section>
 
                     <section>
                         <h3>Structured Coalescent</h3>
+
+                        <ul>
+                            <li class="fragment">Backwards-in-time process that generates both
+                            the tree and ancestral locations.</li>
+                        </ul>
+
+                        <div style="position:relative; width:800px; height:400px; margin:0 auto;">
+                            <img class="fragment current-visible"
+                                 style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;background:white"
+                                 width="800" data-src="sc.svg" />
+                            <img class="fragment current-visible"
+                                 style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;background:white"
+                                 width="800" data-src="sc2.svg" />
+                            <img class="fragment current-visible"
+                                 style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;background:white"
+                                 width="800" data-src="sc3.svg" />
+                            <img class="fragment current-visible"
+                                 style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;background:white"
+                                 width="800" data-src="sc4.svg" />
+                            <img class="fragment"
+                                 style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;background:white"
+                                 width="800" data-src="sc5.svg" />
+                            <img class="fragment"
+                                 style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;background:white"
+                                 width="800" data-src="sc6.svg" />
+                            <img class="fragment"
+                                 style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;background:white"
+                                 width="800" data-src="sc7.svg" />
+                            <img class="fragment"
+                                 style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;background:white"
+                                 width="800" data-src="sc8.svg" />
+                            <img class="fragment"
+                                 style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;background:white"
+                                 width="800" data-src="sc9.svg" />
+                            <img class="fragment"
+                                 style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;background:white"
+                                 width="800" data-src="sc10.svg" />
+                            <img class="fragment"
+                                 style="margin:0px;padding:0px;position:absolute;top:0;left:0;box-shadow:none;background:white"
+                                 width="800" data-src="sc11.svg" />
+                        </div>
+
+                        <ul>
+                            <li class="fragment">Parameterized by migration rates and (sub)population sizes.</li>
+                        </ul>
+
                     </section>
 
                     <section>
                         <h3>Inference: Modified tree prior</h3>
+
+                        <p>Again, the standard phylogenetic posterior is modified:</p>
+                        <blockquote style="width:80%">
+                            \begin{align}
+                            P(T,\mu,\theta|A,L) &= \frac{1}{P(A)} P(A|T,\mu)\\
+                            &\times P(T,C|\vec{N},\bar{M},L)P(\mu)P(\theta)
+                            \end{align}
+                        </blockquote>
+                        <p>where</p>
+                        <ul>
+                            <li>$L$ are the sampled locations, </li>
+                            <li>$\bar{M}$ is the migration rate matrix, and</li>
+                            <li>$C$ are the ancestral locations on the tree.</li>
+                        </ul>
+
+                        <p>The sample locations and SC model affect the <b>tree prior</b>.</p>
+                        <blockquote>
+                            The <em>shape</em> of the tree is affected by structure.
+                        </blockquote>
+
                     </section>
 
                     <section>
                         <h3>Sampling assumption</h3>
+
+                        <ul>
+                            <li>The coalescent tree prior is
+                            explicitly conditioned on the sample times</li>
+                            <li>Similarly, the structured coalescent tree prior
+                                is conditioned on sample locations.</li>
+                        </ul>
+
+                        <blockquote>
+                            The strucured coalescent makes no assumption about
+                            the manner in which samples are collected with
+                            respect to location.
+                        </blockquote>
+
+                        <ul>
+                            <li>Sample distribution not used as data.</li>
+                            <li>Uneven sampling can reduce inference power, but will <em>not</em> bias results!</li>
+                        </ul>
                     </section>
 
                     <section>
                         <h3>Birth-death Migration Model</h3>
+
+                        <ul>
+                            <li class="fragment">Introduced by K&uuml;hnert et al. <a class="citep">(MBE 2016)</a>.</li>
+                            <li class="fragment">A birth-death model of population dynamics in which individuals are permitted to change location due to discrete migration events.</li>
+                            <li class="fragment">Migrations may be correlated with births, but not deaths.</li>
+                            <li class="fragment">Sampling process explicitly modelled.</li>
+                            <li class="fragment">Birth and death rates may be location-dependent: not&nbsp;"neutral"! (Tree shape affected by structure.)</li>
+                            <li class="fragment">Inference is performed using modified tree prior.</li>
+
+                        </ul>
                     </section>
                 </section>
 
