@@ -92,15 +92,15 @@
                         <div class="fragment" style="position:absolute; top:0; left:0;">
                             <p>Common questions:</p>
                             <div style="width:800px; height:600px; position:relative">
-                                <img style="position: absolute; top:0; left:0; width:800px;"
+                                <img style="position: absolute; top:0; left:0; width:700px;"
                                                       data-src="questions5.svg">
-                                <img class="fragment" style="position: absolute; top:0; left:0; width:800px;"
+                                <img class="fragment" style="position: absolute; top:0; left:0; width:700px;"
                                                       data-src="questions4.svg">
-                                <img class="fragment" style="position: absolute; top:0; left:0; width:800px;"
+                                <img class="fragment" style="position: absolute; top:0; left:0; width:700px;"
                                                       data-src="questions3.svg">
-                                <img class="fragment" style="position: absolute; top:0; left:0; width:800px;"
+                                <img class="fragment" style="position: absolute; top:0; left:0; width:700px;"
                                                       data-src="questions2.svg">
-                                <img class="fragment" style="position: absolute; top:0; left:0; width:800px;"
+                                <img class="fragment" style="position: absolute; top:0; left:0; width:700px;"
                                                       data-src="questions.svg">
                             </div>
                         </div>
@@ -135,17 +135,17 @@
 
                     <p>Currently two main classes of models:</p>
                     <ol>
-                        <li> Mugration models:
+                        <li class="fragment"> Mugration models:
                                 <ul>
-                                    <li>Given tree and root location, what is the probability of sample locations?</li>
-                                    <li>Exist in contiuous and discrete forms.</li>
-                                    <li>Developed by Phillipe Lemey et al. <a class="citep">(PLoS Comp Biol 2009, MBE 2010)</a>
+                                    <li class="fragment">Given tree and root location, what is the probability of sample locations?</li>
+                                    <li class="fragment">Exist in contiuous and discrete forms.</li>
+                                    <li class="fragment">Developed by Phillipe Lemey et al. <a class="citep">(PLoS Comp Biol 2009, MBE 2010)</a>
                                 </ul>
-                        <li> Structured population models:
+                        <li class="fragment"> Structured population models:
                             <ul>
-                                <li>given sequences and locations, what is the probability of location-coloured tree?</li>
-                                <li>Currently mostly discrete.</li>
-                                <li>Earliest examples by <a class="citep">Hudson (1990)</a> and <a class="citep">Notohara (1990)</a>.</li>
+                                <li class="fragment">given sequences and locations, what is the probability of location-coloured tree?</li>
+                                <li class="fragment">Currently mostly discrete.</li>
+                                <li class="fragment">Earliest examples by <a class="citep">Hudson (1990)</a> and <a class="citep">Notohara (1990)</a>.</li>
                             </ul>
                     </ol>
                 </section>
@@ -173,12 +173,29 @@
                     </section>
 
                     <section>
+                        <h3>Recap: Bayesian Phylogenetic Inference</h3>
+
+                        <br>
+                        <br>
+
+                        <p>The usual phylogenetic posterior is:</p>
+                        <blockquote style="width:80%">
+                            $$P(T,\mu,\theta|A,L) = \frac{1}{P(A)} P(A|T,\mu) P(T|\theta)P(\mu)P(\theta)$$
+                        </blockquote>
+                        <p>where</p>
+                        <ul>
+                            <li>$A$ is a sequence alignment,</li>
+                            <li>$T$ is the tree.</li>
+                        </ul>
+                    </section>
+
+                    <section>
                         <h3>Inference: Modified tree likelihood</h3>
 
                         <p>The standard phylogenetic posterior is modified:</p>
                         <blockquote style="width:80%">
                             \begin{align}
-                            P(T,\mu,\theta|A,L) &= \frac{1}{P(A)P(L)} P(A|T,\mu)P(L|T,M)\\
+                            P(T,\mu,\theta|A,L) =& \frac{1}{P(A)P(L)} P(A|T,\mu)P(L|T,M)\\
                                 &\times P(T|\theta)P(\mu)P(\theta)
                             \end{align}
                         </blockquote>
@@ -188,8 +205,8 @@
                             <li>$M$ is a matrix specifying the random walk.</li>
                         </ul>
 
-                        <p>Note the similarity between the two tree <b>likelihood</b> terms.</p>
-                        <blockquote>
+                        <p class="fragment">Note the similarity between the two tree <b>likelihood</b> terms.</p>
+                        <blockquote class="fragment">
                             Mugration models treat location as just another trait/character.
                         </blockquote>
                     </section>
@@ -200,13 +217,13 @@
                         <br>
 
                         <p>A very important assumption made by the mugration model posterior:</p>
-                        <blockquote class="alert">
+                        <blockquote class="alert fragment">
                             Samples are assumed to be collected in a manner that is blind to their location.
                         </blockquote>
 
                         <ul>
-                            <li>Mugration models use sample location as data.</li>
-                            <li>Just as for genetic data, non-random sampling procedures will bias results.</li>
+                            <li class="fragment">Mugration models use sample location as data.</li>
+                            <li class="fragment">Just as for genetic data, non-random sampling procedures will bias results.</li>
                         </ul>
                     </section>
 
@@ -366,8 +383,8 @@
                             <li>$C$ are the ancestral locations on the tree.</li>
                         </ul>
 
-                        <p>The sample locations and SC model affect the <b>tree prior</b>.</p>
-                        <blockquote>
+                        <p class="fragment">The sample locations and SC model affect the <b>tree prior</b>.</p>
+                        <blockquote class="fragment">
                             The <em>shape</em> of the tree is affected by structure.
                         </blockquote>
 
@@ -377,21 +394,21 @@
                         <h3>Sampling assumption</h3>
 
                         <ul>
-                            <li>The coalescent tree prior is
+                            <li class="fragment">The coalescent tree prior is
                             explicitly conditioned on the sample times</li>
-                            <li>Similarly, the structured coalescent tree prior
+                            <li class="fragment">Similarly, the structured coalescent tree prior
                                 is conditioned on sample locations.</li>
                         </ul>
 
-                        <blockquote>
+                        <blockquote class="fragment">
                             The strucured coalescent makes no assumption about
                             the manner in which samples are collected with
                             respect to location.
                         </blockquote>
 
                         <ul>
-                            <li>Sample distribution not used as data.</li>
-                            <li>Uneven sampling can reduce inference power, but will <em>not</em> bias results!</li>
+                            <li class="fragment">Sample distribution not used as data.</li>
+                            <li class="fragment">Uneven sampling can reduce inference power, but will <em>not</em> bias results!</li>
                         </ul>
                     </section>
 
@@ -418,20 +435,22 @@
                     <section>
                         <h3>Discrete Phylogeography</h3>
 
-                        <p>Required packages:</p>
-                        <blockquote>
-                            <ul>
-                                <li>BEAST_CLASSIC</li>
-                            </ul>
-                        </blockquote>
+                        <div class="fragment">
+                            <p>Required packages:</p>
+                            <blockquote>
+                                <ul>
+                                    <li>BEAST_CLASSIC</li>
+                                </ul>
+                            </blockquote>
+                        </div>
 
                         <br>
 
                         <ul>
-                            <li>Very well supported, BEAUti analysis setup.</li>
-                            <li>Tutorial on <a href="http://beast2.org/tutorials">beast2.org/tutorials</a>.</li>
-                            <li>Very fast, allows inference of which migrations are necessary to describe data.</li>
-                            <li>Prone to sampling biases.</li>
+                            <li class="fragment">Very well supported, BEAUti analysis setup.</li>
+                            <li class="fragment">Tutorial on <a href="http://beast2.org/tutorials">beast2.org/tutorials</a>.</li>
+                            <li class="fragment">Very fast, allows inference of which migrations are necessary to describe data.</li>
+                            <li class="fragment">Prone to sampling biases.</li>
                         </ul>
                     </section>
 
@@ -445,21 +464,23 @@
                     <section>
                         <h3>Continuous Spherical Phylogeography</h3>
 
-                        <p>Required packages:</p>
-                        <blockquote>
-                            <ul>
-                                <li>GEO_SPHERE</li>
-                            </ul>
-                        </blockquote>
+                        <div class="fragment">
+                            <p>Required packages:</p>
+                            <blockquote>
+                                <ul>
+                                    <li>GEO_SPHERE</li>
+                                </ul>
+                            </blockquote>
+                        </div>
 
                         <br>
 
                         <ul>
-                            <li>Also well supported and BEAUti analysis setup.</li>
-                            <li>Tutorial on <a href="http://beast2.org/tutorials">beast2.org/tutorials</a>.</li>
-                            <li>Output can be summarized using <a href="http://kuleuven.ac.be/aidslab/phylogeography/SPREAD.html">Spread</a> and visualized using Google Earth.</li>
+                            <li class="fragment">Also well supported and BEAUti analysis setup.</li>
+                            <li class="fragment">Tutorial on <a href="http://beast2.org/tutorials">beast2.org/tutorials</a>.</li>
+                            <li class="fragment">Output can be summarized using <a href="http://kuleuven.ac.be/aidslab/phylogeography/SPREAD.html">Spread</a> and visualized using Google Earth.</li>
 
-                            <li>Prone to sampling biases.</li>
+                            <li class="fragment">Prone to sampling biases.</li>
                         </ul>
 
                     </section>
@@ -475,20 +496,22 @@
                     <section>
                         <h3>Structured Coalescent (Full model)</h3>
 
-                        <p>Required packages:</p>
-                        <blockquote>
-                            <ul>
-                                <li>MultiTypeTree</li>
-                            </ul>
-                        </blockquote>
+                        <div class="fragment">
+                            <p>Required packages:</p>
+                            <blockquote>
+                                <ul>
+                                    <li>MultiTypeTree</li>
+                                </ul>
+                            </blockquote>
+                        </div>
 
                         <br>
 
                         <ul>
-                            <li>Newer analysis option, BEAUti setup.</li>
-                            <li>Tutorial at <a href="http://beast1.org/tutorials">beast2.org/tutorials</a>.</li>
-                            <li>No built-in assumptions regarding sampling procedure.</li>
-                            <li>More computationally demanding than mugration
+                            <li class="fragment">Newer analysis option, BEAUti setup.</li>
+                            <li class="fragment">Tutorial at <a href="http://beast1.org/tutorials">beast2.org/tutorials</a>.</li>
+                            <li class="fragment">No built-in assumptions regarding sampling procedure.</li>
+                            <li class="fragment">More computationally demanding than mugration
                                 models, only smaller numbers of demes are
                                 feasible.</li>
                         </ul>
@@ -502,20 +525,22 @@
                     <section>
                         <h3>Structured Coalescent (Approximation)</h3>
 
-                        <p>Required packages:</p>
-                        <blockquote>
-                            <ul>
-                                <li>BASTA</li>
-                            </ul>
-                        </blockquote>
+                        <div class="fragment">
+                            <p>Required packages:</p>
+                            <blockquote>
+                                <ul>
+                                    <li>BASTA</li>
+                                </ul>
+                            </blockquote>
+                        </div>
 
                         <br>
 
                         <ul>
-                            <li>Very new analysis option, <b>NO BEAUti setup</b>.</li>
-                            <li>Temporary tutorial at <a href="http://github.com/tgvaughan/MultitypeTree/wiki">gihub.com/tgvaughan/MultiTypeTree/wiki</a>.</li>
-                            <li>Approximation cuts down on the computational demands of the SC model, allowing many more locations to be considered.</li>
-                            <li>Produces very similar results to MultiTypeTree, but only samples internal node locations (not mid-edge locations).</li>
+                            <li class="fragment">Very new analysis option, <b>NO BEAUti setup</b>.</li>
+                            <li class="fragment">Temporary tutorial at <a href="http://github.com/tgvaughan/MultitypeTree/wiki">gihub.com/tgvaughan/MultiTypeTree/wiki</a>.</li>
+                            <li class="fragment">Approximation cuts down on the computational demands of the SC model, allowing many more locations to be considered.</li>
+                            <li class="fragment">Produces very similar results to MultiTypeTree, but only samples internal node locations (not mid-edge locations).</li>
                         </ul>
                     </section>
 
@@ -545,20 +570,22 @@
                     <section>
                         <h3>Birth-death Migration Model</h3>
 
-                        <p>Required packages:</p>
-                        <blockquote>
-                            <ul>
-                                <li>MASTER</li>
-                                <li>MultiTypeTree</li>
-                                <li>SA</li>
-                            </ul>
-                        </blockquote>
+                        <div class="fragment">
+                            <p>Required packages:</p>
+                            <blockquote>
+                                <ul>
+                                    <li>MASTER</li>
+                                    <li>MultiTypeTree</li>
+                                    <li>SA</li>
+                                </ul>
+                            </blockquote>
+                        </div>
 
                         <br>
 
                         <ul>
-                            <li>While capable of performing inference, BDMM has not yet been officially released.</li>
-                            <li>Information can be found on the GitHub repository: <a href="https://github.com/denisekuehnert/bdmm">github.com/denisekuehnert/bdmm</a>.</li>
+                            <li class="fragment">While capable of performing inference, BDMM has not yet been officially released.</li>
+                            <li class="fragment">Information can be found on the GitHub repository: <a href="https://github.com/denisekuehnert/bdmm">github.com/denisekuehnert/bdmm</a>.</li>
                         </ul>
                     </section>
 
@@ -586,10 +613,34 @@
                 <section>
                     <h2>Summary</h2>
 
+                    <ul>
+                        <li class="fragment">Bayesian phylogeographic methods provide a
+                            systematic way of combining geographic and genetic
+                            data.</li>
+                        <li class="fragment">BEAST 2 provides two main routes:
+                            <ul>
+                                <li class="fragment">Mugration models</li>
+                                <li class="fragment">Structured population models</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Mugration models tend to allow computationally
+                        efficient inference, but have questionable foundation
+                        and are subject to sampling biases.</li>
+                        <li class="fragment">Structured population models may be more closely tied to
+                            the biology and don't necessarily depend on the samplling process.</li>
+                    </ul>
+
                 </section>
 
                 <section>
                     <h2>MultiTypeTree Tutorial</h2>
+                    
+                    <blockquote style="margin-top:150px; width:80%">
+                        <ol>
+                            <li>Open tutorial at <a href="https://github.com/tgvaughan/MultiTypeTree/wiki/Beginner%27s-Tutorial-%28short-version%29">github.com/tgvaughan/MultiTypeTree/wiki/Beginner's-Tutorial-(short-version)</a>.</li>
+                            <li>Start the tutorial!</li>
+                        </ol>
+                    </blockquote>
                 </section>
 			</div>
 
