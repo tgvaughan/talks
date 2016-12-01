@@ -42,7 +42,7 @@
 			<div class="slides">
 				<section class="titlepage">
                     <div class="title">
-                        <h3>Phylogeography using BEAST 2</h3>
+                        <h3>Bayesian Phylographic Inference</h3>
                     </div>
 
                     <div class="authors">Tim&nbsp;Vaughan</div>
@@ -57,7 +57,9 @@
                 <section>
                     <h2>What is Phylogeography?</h2>
 
-                    <div class="center">
+                    <br>
+                    <br>
+
                     <blockquote>
                         Phylogeography is a field of study concerned with the
                         principles and processes governing the geographic
@@ -72,23 +74,96 @@
                 </section>
 
                 <section>
-                    <h2>Phylogeographic inference problems</h2>
+                    <h2>The Phylogeographic Inference problem</h2>
+
+                    How did ancestral populations move about?
+                    Usual data:
+                    * spatially (and temporally) tagged genetic data
+
+                    Usual questions:
+                    * Where was the most recent common ancestor?
+                    * How did the observed distribution of samples arise?
+                    * What does this imply about the ancestral movement of
+                      populations?
                 </section>
 
                 <section>
                     <h2>Bayesian Phylographic Inference</h2>
+
+                    Bayesian inference requires a model.
+                    Two classes of models:
+                    * Mugration models (given tree and root location, what is the probability of my sample locations?)
+                    * Structured population models (given sequences and locations, what is the probability of coloured tree?)
                 </section>
 
                 <section>
-                    <h2>Two ways of modelling movement</h2>
+                    <section class="center">
+                        <h2>Mugration models</h2>
+                    </section>
+
+                    <section>
+                        <h3>Discrete mugration model</h3>
+                    </section>
+
+                    <section>
+                        <h3>Inference: Modified tree likelihood</h3>
+                    </section>
+
+                    <section>
+                        <h3>Continuous extensions</h3>
+                    </section>
+
+                    <section>
+                        <h3>Sampling assumption</h3>
+                    </section>
+
+                    <section>
+                        <h3>Equivalent population genetic model</h3>
+                    </section>
                 </section>
 
                 <section>
-                    <h2>Random walk models</h2>
+                    <section class="center">
+                        <h2>Structured population models</h2>
+                    </section>
+
+                    <section>
+                        <h2>Structured Wright-Fisher Model</h2>
+                    </section>
+
+                    <section>
+                        <h2>Structured Coalescent</h2>
+                    </section>
+
+                    <section>
+                        <h2>Inference: Modified tree prior</h2>
+                    </section>
+
+                    <section>
+                        <h3>Sampling assumption</h3>
+                    </section>
                 </section>
 
                 <section>
-                    <h2>Stepping stone models</h2>
+                    <section class="center">
+                        <h2>Phylogeographic inference in BEAST&nbsp;2</h2>
+                    </section>
+
+                    <section>
+                        <h3>Discrete Phylogeography (mugration)</h3>
+                    </section>
+
+                    <section>
+                        <h3>Continuous Phylogeography (mugration)</h3>
+                    </section>
+
+                    <section>
+                        <h3>Structured Coalescent (Full model)</h3>
+                    </section>
+
+                    <section>
+                        <h3>Structured Coalescent (Approximation)</h3>
+                    </section>
                 </section>
 
                 <section>
