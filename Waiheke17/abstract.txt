@@ -1,0 +1,21 @@
+Title: Investigating seasonal New Zealand influenza dynamics using genomic and mobile phone data
+
+Authors: Tim Vaughan, Andr\'e Lichtsteiner, Richard Hall, Sue Hang, John Graves, David Welch,
+         Alexei Drummond
+
+Abstract:
+
+Seasonal influenza (H3N2) imposes a large annual health burden across the world.
+Phylogeographic inference plays an increasingly critical role in unravelling the
+global migration patterns followed by new strains that emerge from the tropics
+on a yearly basis. On smaller scales, however, there is much that remains a
+mystery.  For instance, how many strains enter New Zealand each year? How do
+they circulate within the country?  What are the main drivers of this movement?
+
+In this talk we will present results of an ongoing project to address these and
+other questions through both separate and joint analysis of spatially sampled
+genetic data and mobile phone movement data. We show that these analyses
+provide evidence for multiple epidemic-spawning strains entering the country
+each year and for spatial structure in the genetic data.  We consider the
+degree to which this is explained by the mobile phone-derived movement data and
+further use this data to help infer the seasonal movement of the virus.
