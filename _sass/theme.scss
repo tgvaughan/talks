@@ -55,6 +55,8 @@ body {
 	text-transform: $headingTextTransform;
 	text-shadow: $headingTextShadow;
 
+    background-color: $headingBackgroundColor;
+
 	word-wrap: break-word;
 }
 
