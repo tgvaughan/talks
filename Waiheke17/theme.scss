@@ -52,8 +52,16 @@ section.titlepage .title {
 section.titlepage .authors {
     font-size: 1em;
     font-weight: normal;
-    color: $mainColor;
-    background-color: $backgroundColor;
+
+    padding-top: 1em;
+}
+
+section.titlepage .institution {
+    padding-top: 1em;
+}
+
+section.titlepage .date {
+    padding-top: 1em;
 }
 
 div.figure.inline {

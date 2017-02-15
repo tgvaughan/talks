@@ -26,20 +26,28 @@
 			<div class="slides">
                 <section class="titlepage">
                     <h1 class="title">Investigating seasonal NZ influenza dynamics using
-                        genomic<br> and mobile phone data</h1>
+                        genomic and mobile phone data</h1>
 
-                    <h2 class="authors"><u>Tim&nbsp;Vaughan</u>, Andr&eacute;&nbsp;Lichtsteiner,
+                    <div class="authors"><u>Tim&nbsp;Vaughan</u>, Andr&eacute;&nbsp;Lichtsteiner,
                         David&nbsp;Welch, Alexei&nbsp;Drummond</h2>
 
-                    <h2 class="authors">
-                        Richard&nbsp;Hall, Sue&nbsp;Huang
-                    </h2>
+                    <div class="institution">Centre for Computational Evolution<br>
+                    The University of Auckland</div>
+
+                    <div class="date">21<sup>st</sup> Annual New Zealand Phylogenomics Meeting<br>
+                        12-17 February, 2017<br>
+                        Waiheke Island</div>
+
                 </section>
 
                 <section>
                     <h2>Influenza</h2>
 
                     <div style='float:left;width:80%'>
+
+                        <br>
+                        <br>
+
                         <ul>
                             <li class="fragment">RNA virus with a 14 kb genome
                                 consisting of 8 distinct segments.</li>
@@ -281,22 +289,22 @@
                     <section>
                         <h3>Movement matrix transformation</h3>
 
-                        <p>We transform the matrix using a simple reweighting:
+                        <p class="fragment">We transform the matrix using a simple reweighting:
                         $$ r_{ab} = \sum_{ij} f_{ia} f_{jb} r_{ij} $$
                         where $f_{ia}$ is the fraction of RTO $i$ in DHB $a$.</p>
 
                         <br>
 
-                         <blockquote class="alert">
+                         <blockquote class="alert fragment">
                            This basis transformation introduces additional noise.
                         </blockquote>
 
                        <br>
                         
-                        The forward-time rate matrix is then transformed into
+                       <p class="fragment">The forward-time rate matrix is then transformed into
                         the following backward-time migration matrix for ancestral lineages
                         in the SC model:
-                        $$ m_{ab} = r_{ba}N_{b}/N_{a} $$
+                        $$ m_{ab} = r_{ba}N_{b}/N_{a} $$</p>
 
                     </section>
 
@@ -312,13 +320,13 @@
                         <h3>How well do host movements fit the genetic data?</h3>
 
                         <ul>
-                            <li>Compute Bayes factor against model with uniform rate matrix.</li>
-                            <li>Accomplish this using model-switch path sampling<br>
+                            <li class="fragment">Compute Bayes factor against model with uniform rate matrix.</li>
+                            <li class="fragment">Accomplish this using model-switch path sampling<br>
                                         <a class="cite">[Lartillot and Phillip&eacute;, 2006]</a></li>
                         </ul>
 
-                        <p style="text-align:left">Can express the log BF as the following definite
-                        integral
+                        <p class="fragment" style="text-align:left">
+                        Can express the log BF as the following definite integral
                         $$\text{logBF} = \int_0^1 E_{\beta}[U]d\beta$$
 
                         <br>
@@ -353,23 +361,47 @@
                     <h2>Summary</h2>
 
                     <ol>
-                        <li class="fragment">Seasonal influenza evolution is <em>not</em> well
-                            described by an unstructured compartmental model.
-                        </li>
                         <li class="fragment">Population structure, particularly the North/South
-                            island split, shapes the evolution.</li>
-                        <li class="fragment">There does seem to be evidence for multiple
+                            island split, shapes the seasonal evolutionary dynamic of H3N2.</li>
+                        <li class="fragment">There <b>does</b> seem to be strong evidence for multiple
                             introductions within a single season.</li>
+                        <li class="fragment">Mobile phone-derived host movement data is well
+                        supported as a model for national H3N2 structue.</li>
                     </ol>
 
                 </section>
 
                 <section>
                     <h2>Outlook</h2>
+
+                    <ol>
+                        <li class="fragment">Compare mobile phone model with simple distance matrix-based model.</li>
+                        <li class="fragment">Include a "World" population in analysis to allow
+                            more defensible ancestral location inferences.</li>
+                        <li class="fragment">Acquire more sequences.  ESR has collected
+                            thousands of isolates as part of the CDC SHIVERS
+                            project.</li>
+                        <li class="fragment">Acquire finer-resolution host movement information
+                        and in an appropriate basis.</li>
+                    </ol>
                 </section>
 
                 <section>
                     <h2>Acknowledgements</h2>
+
+                    <ol>
+                        <li>Genomic data was provided by Richard Hall and Sue Huang at ESR.<br>
+                            <div style="text-align:center"><img data-src="ESR_logo.svg" width="350"></div></li>
+                        
+                        <li>Generous donation of aggregated phone movement data:
+                            <div style="text-align:center"><a href="http://qrious.co.nz"><img data-src="Qrious_logo.png" width="350"></a></div></li>
+
+                        <li>Summer internship students:
+                            <ul>
+                                <li>Andr&eacute; Lichtsteiner</li>
+                                <li>John Mlyahilu</li>
+                            </ul>
+                               
                 </section>
 
 			</div>
