@@ -26,7 +26,7 @@
 			<div class="slides">
                 <section class="titlepage">
                     <h1 class="title">Investigating seasonal NZ influenza dynamics using
-                        genomic and mobile phone data</h1>
+                        genomic<br> and mobile phone data</h1>
 
                     <h2 class="authors"><u>Tim&nbsp;Vaughan</u>, Andre&nbsp;Lichtsteiner,
                         David&nbsp;Welch, Alexei&nbsp;Drummond</h2>
@@ -36,10 +36,230 @@
                     </h2>
                 </section>
 
-				<section>Slide 1</section>
+                <section>
+                    <h2>Influenza</h2>
+
+                    <div style='float:left;width:80%'>
+                        <ul>
+                            <li class="fragment">RNA virus with a 14 kb genome
+                                consisting of 8 distinct segments.</li>
+                            <li class="fragment">Evolving $\sim 10^6$ times faster than human
+                                genome: measurably evolving pathogen.</li>
+                            <li class="fragment">Seasonal epidemics occur
+                                repeatably around the world in predictable
+                                order.</li>
+                        </ul>
+                    </div>
+                    <div style="float:right;width:20%">
+                        <img data-src="sneeze.png"/>
+                    </div>
+
+                    &nbsp;
+
+                    <br>
+                    <br>
+
+                    <blockquote class="fragment">
+                        Perfect system for the application of phylodynamic methods.
+                    </blockquote>
+                </section>
+
+                <section>
+                    <h2>Genomic data</h2>
+
+                    <div style='float:left;width:80%'>
+
+                        <br>
+                        <br>
+
+                        <ul>
+                            <li>ESR have sequenced 141 full H3N2 influenza genomes.</li>
+                            <li class="fragment">Sequences from isolates sampled during 2012, 2013 and 2014 seasons.</li>
+                            <li class="fragment">Samples distributed across 18 of the 20 New Zealand District Health Boards.</li>
+                        </ul>
+                    </div>
+                    <div style="float:right;width:20%">
+                        <img data-src="align.png"/>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Host movement data</h2>
+                    <div style='float:left;width:80%'>
+
+                        <ul>
+                            <li>QRIOUS (<a href="http://qrious.co.nz">qrious.co.nz</a>)
+                                have generously provided anonymized and
+                                aggregated information on movement of IMSIs
+                                within NZ.</li>
+                            <li class="fragment">Data provided as a matrix specifying the fraction of time individuals identified as having
+                                a home in a particular area spend in other areas.</li>
+                            <li class="fragment">Locations (home and away) specify only which of the 30 "regional tourism organizations"
+                                spread across the country the entry refers to.</li>
+                            <li class="fragment">Although the data comes only from Spark subscribers, a correction has been applied to account
+                                for non-uniform market share.</li>
+                        </ul>
+                    </div>
+                    <div style="float:right;width:20%">
+                        <img data-src="nokia.jpg"/>
+                    </div>
+                </section>
+
+                <section>
+
+                    <h2>Questions</h2>
+
+                    <br>
+
+                    <blockquote class="fragment">Is there evidence for <b>multiple
+                            introductions</b> during a single season?</blockquote>
+
+                    <br>
+
+                    <blockquote class="fragment">Does <b>population
+                            structure</b> influence the pathogen evolution?</blockquote>
+
+                    <br>
+
+                    <blockquote class="fragment">If so, is this structure correlated with
+                        what <b>mobile phones</b> tell us of host movements?</blockquote>
+
+                </section>
+
+                <section>
+                    <section class="center">
+                        <h2>Phylogeography of seasonal epidemics</h2>
+                    </section>
+
+                    <section>
+                        <h3>Potential for phylogeographic analyses</h3>
+                        <ul>
+                            <li class="fragment">Each genome tagged with location down to DHB-level.</li>
+                            <li class="fragment">Have evaluated two distinct phylogeographic inference methods:
+                                <ol>
+                                    <li class="fragment">Discrete trait phylogeography ("mugration") model. <a class="cite">[Lemey, Rambaut and Drummond, 2009]</a></li>
+                                    <li class="fragment">Structured coalescent model.<br>
+                                        <a class="cite">[Hudson, 1990; Notohara, 1990]</a></li>
+                                </ol>
+                            </li>
+                        </ul>
+
+                        <blockquote class="fragment">Neither of these models deal explicitly
+                            with the epidemiological dynamics: to do!</blockquote>
+                    </section>
+
+                    <section>
+                        <h3>Mugration results (DHB, 2012)</h3>
+
+                        <img data-src="summary_DHB.svg" style="height:600px"/>
+                    </section>
 
 
-				<section>Slide 2</section>
+                    <section>
+                        <h3>SC results (North/South, 2012)</h3>
+
+                        <img data-src="summary_NS_2012.svg" style="width:500px;height:600px"/>
+                        <img data-src="2012_NS_popsizes.png" style="height:600px"/>
+                    </section>
+
+                    <section>
+                        <h3>SC results (North/South, 2013)</h3>
+
+                        <img data-src="summary_NS_2013.svg" style="width:500px;height:600px"/>
+                        <img data-src="2013_NS_popsizes.png" style="height:600px"/>
+                    </section>
+
+                    <section>
+                        <h3>SC results (North/South, 2014)</h3>
+
+                        <img data-src="summary_NS_2014.svg" style="width:500px;height:600px"/>
+                        <img data-src="2014_NS_popsizes.png" style="height:600px"/>
+                    </section>
+
+                </section>
+
+                <section>
+                    <section class="center">
+                        <h2>Detecting multiple introductions</h2>
+                    </section>
+
+                    <section>
+                        <h3>Qualitative evidence</h3>
+
+                        <blockquote>Summary tree lineage count at the season start
+                            is a rough estimate for the
+                            introduction count.</blockquote>
+
+                        <div class="fragment figure inline">
+                            <img data-src="summary_NS_2012_count.svg" style="width:300px;height:400px"/>
+                            <div class="caption">8</div>
+                        </div>
+                        <div class="fragment figure inline">
+                            <img data-src="summary_NS_2013_count.svg" style="width:300px;height:400px"/>
+                            <div class="caption">8</div>
+                        </div>
+                        <div class="fragment figure inline">
+                            <img data-src="summary_NS_2014_count.svg" style="width:300px;height:400px"/>
+                            <div class="caption">10</div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Semi-quantitative evidence</h3>
+
+                        <blockquote>Use distribution of sampled tree lineage counts
+                            at season start as proxy for intro. count
+                            posterior.</blockquote>
+
+                        <div class="fragment figure inline">
+                            <img data-src="nextant_2012.png" style="width:300px;height:400px"/>
+                        </div>
+                        <div class="fragment figure inline">
+                            <img data-src="nextant_2013.png" style="width:300px;height:400px"/>
+                        </div>
+                        <div class="fragment figure inline">
+                            <img data-src="nextant_2014.png" style="width:300px;height:400px"/>
+                        </div>
+
+                    </section>
+
+                    <section>
+                        <h3>North/South/World model</h3>
+
+                        <blockquote>Use structured coalescent model to
+                        explicitly model introductions using an additional
+                        World deme.</blockquote>
+
+                        <img data-src="example_NSW_tree.svg"/>
+
+                    </section>
+
+                    <section>
+                        <h3>Posterior for 2012 introductions</h3>
+
+                        <img data-src="intro_posterior.png"/>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>Summary</h2>
+
+                    <ol>
+                        <li class="fragment">Seasonal influenza evolution is <em>not</em> well
+                            described by an unstructured compartmental model.
+                        </li>
+                        <li class="fragment">Population structure, particularly the North/South
+                            island split, shapes the evolution.</li>
+                        <li class="fragment">There does seem to be evidence for multiple
+                            introductions within a single season.</li>
+                    </ol>
+
+                    <br>
+                    <br>
+
+                    <blockquote class="fragment">Thank you for listening!</blockquote>
+                </section>
+
 			</div>
 		</div>
 
@@ -49,14 +269,25 @@
 		<script>
 			// More info https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
+                controls: false,
+                progress: false,
 				history: true,
+                centre: false,
+
+                transition: 'none',
+
+                math: {
+                    mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
+                    config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+                },
 
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
 					{ src: '../reveal.js/plugin/markdown/marked.js' },
 					{ src: '../reveal.js/plugin/markdown/markdown.js' },
 					{ src: '../reveal.js/plugin/notes/notes.js', async: true },
-					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: '../reveal.js/plugin/math/math.js', async: true }
 				]
 			});
 		</script>

@@ -9,6 +9,7 @@
 // Include theme-specific fonts
 @import url(../reveal.js/lib/font/source-sans-pro/source-sans-pro.css);
 
+$themeColor: #00f;
 
 // Override theme settings (see ../template/settings.scss)
 $backgroundColor: #fff;
@@ -16,10 +17,10 @@ $backgroundColor: #fff;
 $mainColor: #222;
 $headingColor: #fff;
 
-$mainFontSize: 42px;
+$mainFontSize: 33px;
 $mainFont: 'Source Sans Pro', Helvetica, sans-serif;
 $headingFont: 'Source Sans Pro', Helvetica, sans-serif;
-$headingBackgroundColor: #00f;
+$headingBackgroundColor: $themeColor;
 $headingTextShadow: none;
 $headingLetterSpacing: normal;
 $headingTextTransform: none;
@@ -28,10 +29,11 @@ $linkColor: #2a76dd;
 $linkColorHover: lighten( $linkColor, 15% );
 $selectionBackgroundColor: lighten( $linkColor, 25% );
 
-$heading1Size: 2.0em;
-$heading2Size: 1.6em;
-$heading3Size: 1.3em;
-$heading4Size: 1.0em;
+$heading1Size: 3.5em;
+$heading2Size: 2.5em;
+$heading3Size: 1.5em;
+$heading4Size: 1.00em;
+
 
 section.has-dark-background {
 	&, h1, h2, h3, h4, h5, h6 {
@@ -53,4 +55,36 @@ section.titlepage .authors {
     font-weight: normal;
     color: $mainColor;
     background-color: $backgroundColor;
+}
+
+div.figure.inline {
+    display: inline-block;
+}
+
+div.figure img {
+    margin-bottom: 0px;
+}
+
+div.figure div.cite {
+    position: absolute;
+    right: 20px;
+    color: #a00000;
+    font-size: 0.5em;
+}
+
+div.figure div.caption {
+}
+
+.reveal section img {
+    border: none;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.reveal blockquote {
+    background: $themeColor;
+    color: $backgroundColor;
+}
+
+.reveal blockquote.alert {
+    background: red;
 }
