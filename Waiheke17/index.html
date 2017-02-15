@@ -28,7 +28,7 @@
                     <h1 class="title">Investigating seasonal NZ influenza dynamics using
                         genomic<br> and mobile phone data</h1>
 
-                    <h2 class="authors"><u>Tim&nbsp;Vaughan</u>, Andre&nbsp;Lichtsteiner,
+                    <h2 class="authors"><u>Tim&nbsp;Vaughan</u>, Andr&eacute;&nbsp;Lichtsteiner,
                         David&nbsp;Welch, Alexei&nbsp;Drummond</h2>
 
                     <h2 class="authors">
@@ -106,6 +106,18 @@
                 </section>
 
                 <section>
+                    <h2>Host movement data</h2>
+
+                    <p>Combining host movement matrix with stochastic SIR model yields simulated
+                    epidemics:</p>
+
+                    <div class="figure">
+                        <img data-src="flusim_extract.png"> <img data-src="flusim_extract_bar.png">
+                    </div>
+
+                </section>
+
+                <section>
 
                     <h2>Questions</h2>
 
@@ -142,18 +154,14 @@
                                         <a class="cite">[Hudson, 1990; Notohara, 1990]</a></li>
                                 </ol>
                             </li>
+                            <li class="fragment">Under SC model, pure genomic data contains evidence for
+                                North Island/South Island structure.
+                            </li>
                         </ul>
 
                         <blockquote class="fragment">Neither of these models deal explicitly
                             with the epidemiological dynamics: to do!</blockquote>
                     </section>
-
-                    <section>
-                        <h3>Mugration results (DHB, 2012)</h3>
-
-                        <img data-src="summary_DHB.svg" style="height:600px"/>
-                    </section>
-
 
                     <section>
                         <h3>SC results (North/South, 2012)</h3>
@@ -242,6 +250,106 @@
                 </section>
 
                 <section>
+                    <section>
+                        <h2>Incorporating host movement data</h2>
+                    </section>
+
+                    <section>
+                        <h3>How does host movement data fit in?</h3>
+
+                        <ul>
+                            <li class="fragment">Structured coalescent analyses with uninformative
+                                priors are usually limited to approximately 10 demes.</li>
+                            <li class="fragment">Can use the movement data to fix the rate matrix (up to a multiplicative constant).</li>
+                            <li class="fragment">Drastically improves computational burden of sampling combined parameter/multi-type tree space.</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>Movement matrix transformation</h3>
+
+                        <div class="fragment figure inline">
+                            <img data-src="RTO_map.png" style="width:300px">
+                            <div class="caption">RTOs</div>
+                        </div>
+                        <div class="fragment figure inline">
+                            <img data-src="DHB_map.png" style="width:300px">
+                            <div class="caption">DHBs</div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Movement matrix transformation</h3>
+
+                        <p>We transform the matrix using a simple reweighting:
+                        $$ r_{ab} = \sum_{ij} f_{ia} f_{jb} r_{ij} $$
+                        where $f_{ia}$ is the fraction of RTO $i$ in DHB $a$.</p>
+
+                        <br>
+
+                         <blockquote class="alert">
+                           This basis transformation introduces additional noise.
+                        </blockquote>
+
+                       <br>
+                        
+                        The forward-time rate matrix is then transformed into
+                        the following backward-time migration matrix for ancestral lineages
+                        in the SC model:
+                        $$ m_{ab} = r_{ba}N_{b}/N_{a} $$
+
+                    </section>
+
+                    <section>
+                        <h3>Ancestral locations inferred using phone data</h3>
+                        
+                        <div class="figure">
+                            <img data-src="2012_DHB_qrious.png">
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>How well do host movements fit the genetic data?</h3>
+
+                        <ul>
+                            <li>Compute Bayes factor against model with uniform rate matrix.</li>
+                            <li>Accomplish this using model-switch path sampling<br>
+                                        <a class="cite">[Lartillot and Phillip&eacute;, 2006]</a></li>
+                        </ul>
+
+                        <p style="text-align:left">Can express the log BF as the following definite
+                        integral
+                        $$\text{logBF} = \int_0^1 E_{\beta}[U]d\beta$$
+
+                        <br>
+
+                        where $U = \log P(D,\theta|M_1) - \log P(D,\theta|M_2)$<br>
+
+                        <br>
+
+                        and $E_{\beta}[U]$ is
+                        the expected value of $U$ under the product distribution
+
+                        <br>
+                        <br>
+
+                        $$P(D,\theta|M_1)^{\beta}P(D,\theta|M_2)^{1-\beta}$$
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>How well do host movements fit the genetic data?</h3>
+
+                        <div class="figure">
+                            <img data-src="logBF_comp.png" style="width:600px">
+                            <div class="caption">
+                                Bayes factor in favor of host movement-derived migration matrix: $\sim 10^7$.
+                            </div>
+                        </div>
+                    </section>
+                </section>
+
+                <section>
                     <h2>Summary</h2>
 
                     <ol>
@@ -254,10 +362,14 @@
                             introductions within a single season.</li>
                     </ol>
 
-                    <br>
-                    <br>
+                </section>
 
-                    <blockquote class="fragment">Thank you for listening!</blockquote>
+                <section>
+                    <h2>Outlook</h2>
+                </section>
+
+                <section>
+                    <h2>Acknowledgements</h2>
                 </section>
 
 			</div>

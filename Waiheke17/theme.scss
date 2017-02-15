@@ -17,7 +17,7 @@ $backgroundColor: #fff;
 $mainColor: #222;
 $headingColor: #fff;
 
-$mainFontSize: 33px;
+$mainFontSize: 30px;
 $mainFont: 'Source Sans Pro', Helvetica, sans-serif;
 $headingFont: 'Source Sans Pro', Helvetica, sans-serif;
 $headingBackgroundColor: $themeColor;
@@ -40,7 +40,6 @@ section.has-dark-background {
 		color: #fff;
 	}
 }
-
 
 // Theme template ------------------------------
 @import "theme";
@@ -83,8 +82,11 @@ div.figure div.caption {
 .reveal blockquote {
     background: $themeColor;
     color: $backgroundColor;
+    font-style: normal;
 }
 
 .reveal blockquote.alert {
     background: red;
 }
+
+
