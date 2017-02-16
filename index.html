@@ -17,7 +17,7 @@
             {% assign sorted = site.pages | sort:"date" | reverse %}
         {% for page in sorted %}
             {% if page.category == "talk" %}
-            <li><a href="{{page.url}}">{{page.title}}</a><br>
+            <li><a href="{{site.baseurl}}{{page.url}}">{{page.title}}</a><br>
                     ({{page.meeting}}, {{page.date | date_to_long_string}})</li>
             {% endif %}
         {% endfor %}
