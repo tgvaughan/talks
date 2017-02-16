@@ -14,7 +14,8 @@
         The following are links to recent web-based talks I've given:
 
         <ol>
-        {% for page in site.pages %}
+            {% assign sorted = site.pages | sort:"date" | reverse %}
+        {% for page in sorted %}
             {% if page.category == "talk" %}
             <li><a href="{{page.url}}">{{page.title}}</a><br>
                     ({{page.meeting}}, {{page.date | date_to_long_string}})</li>
