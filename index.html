@@ -1,0 +1,25 @@
+---
+---
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <title>Talks</title>
+    </head>
+
+    <body>
+        <h1>Tim Vaughan's web-based talks</h1>
+
+        The following are links to recent web-based talks I've given:
+
+        <ol>
+        {% for page in site.pages %}
+            {% if page.category == "talk" %}
+            <li><a href="{{page.url}}">{{page.title}}</a><br>
+                    ({{page.meeting}}, {{page.date | date_to_long_string}})</li>
+            {% endif %}
+        {% endfor %}
+        </ol>
+    </body>
+</html>
