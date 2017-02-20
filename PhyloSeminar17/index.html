@@ -1,0 +1,77 @@
+---
+title: Joint Bayesian inference of bacterial ancestral recombination graphs
+meeting: Phyloseminar
+date: 2017-02-23
+category: draft_talk
+---
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>PhyloSeminar, 2017</title>
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="theme.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../reveal.js/css/print/pdf.css' : '../reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+
+	<body>
+		<div class="reveal">
+			<div class="slides">
+                <section class="titlepage">
+                    <h1 class="title">Joint Bayesian inference of bacterial ancestral recombination graphs</h1>
+
+                    <div class="authors">Tim&nbsp;Vaughan</div>
+
+                    <div class="institution">Centre for Computational Evolution<br>
+                    The University of Auckland</div>
+
+                    <div class="date">PhyloSeminar, 23<sup>rd</sup> February, 2017</div>
+
+                </section>
+			</div>
+		</div>
+
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+                controls: false,
+                progress: false,
+				history: true,
+                centre: false,
+
+                transition: 'none',
+
+                math: {
+                    mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
+                    config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+                },
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../reveal.js/plugin/markdown/marked.js' },
+					{ src: '../reveal.js/plugin/markdown/markdown.js' },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: '../reveal.js/plugin/math/math.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
