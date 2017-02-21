@@ -3,246 +3,189 @@ title: Joint Bayesian inference of bacterial ancestral recombination graphs
 meeting: Phyloseminar
 date: 2017-02-23
 category: draft_talk
+
+layout: presentation
 ---
-<!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>PhyloSeminar, 2017</title>
+<section class="titlepage">
+    <h1 class="title">Joint Bayesian inference of bacterial ancestral recombination graphs</h1>
 
-		<link rel="stylesheet" href="../reveal.js/css/reveal.css">
-        <link rel="stylesheet" href="theme.css">
+    <div class="authors">Tim&nbsp;Vaughan</div>
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+    <div class="institution">Centre for Computational Evolution<br>
+        The University of Auckland</div>
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? '../reveal.js/css/print/pdf.css' : '../reveal.js/css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
+    <div class="date">PhyloSeminar, 23<sup>rd</sup> February, 2017</div>
 
-	<body>
-		<div class="reveal">
-			<div class="slides">
-                <section class="titlepage">
-                    <h1 class="title">Joint Bayesian inference of bacterial ancestral recombination graphs</h1>
+</section>
 
-                    <div class="authors">Tim&nbsp;Vaughan</div>
+<section>
+    <h2>Why study bacterial phylogenetics?</h2>
 
-                    <div class="institution">Centre for Computational Evolution<br>
-                    The University of Auckland</div>
+    <div style="float:left; width:700px">
+        <ul>
+            <li class="fragment" data-fragment-index="1">Bacteria play important rols (both positive and
+                negative) in the health of animals and
+                plants.</li>
+            <li class="fragment" data-fragment-index="2">Many bacteria possess interesting and
+                <i>expermimentally accessible</i> evolutionary
+                dynamics.</li>
+            <li class="fragment" data-fragment-index="3">Bacterial genomes are measurably evolving over
+                relatively short study periods.
+                <div class="figure" style="width:500px; position: relative; left: 100px">
+                    <img data-src="MEP_cropped.png">
+                    <div class="cite">Drummond &amp; Rambaut, TIEE (2003)</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div style="float:right; width:250px">
+        <div class="figure fragment" data-fragment-index="1">
+            <img data-src="EColiGut_Psa_collage.jpg">
+        </div>
+        <div class="figure fragment" data-fragment-index="2">
+            <img data-src="adaptive_radiation.jpg">
+            <div class="cite">Rainey &amp; Travisano, Nature (1998)</div>
+        </div>
+    </div>
+</section>
 
-                    <div class="date">PhyloSeminar, 23<sup>rd</sup> February, 2017</div>
+<section>
+    <h2>Cartoon bacterial population genetics</h2>
 
-                </section>
+    <div style="position: relative; top:0; left:0; width:1000px; height:400px">
+        <img data-src="binary_fission_7.svg" class="fragment current-visible" data-fragment-index="1"
+            style="position:absolute; top:0; left:0; width:1000px; box-shadow:none">
+        <img data-src="binary_fission_6.svg" class="fragment" data-fragment-index="2"
+            style="position:absolute; top:0; left:0; width:1000px; box-shadow:none">
+        <img data-src="binary_fission_5.svg" class="fragment" data-fragment-index="3"
+            style="position:absolute; top:0; left:0; width:1000px; box-shadow:none">
+        <img data-src="binary_fission_4.svg" class="fragment" data-fragment-index="4"
+            style="position:absolute; top:0; left:0; width:1000px; box-shadow:none">
+        <img data-src="binary_fission_3.svg" class="fragment" data-fragment-index="5"
+            style="position:absolute; top:0; left:0; width:1000px; box-shadow:none">
+        <img data-src="binary_fission_2.svg" class="fragment" data-fragment-index="6"
+            style="position:absolute; top:0; left:0; width:1000px; box-shadow:none">
+        <img data-src="binary_fission_1.svg" class="fragment" data-fragment-index="7"
+            style="position:absolute; top:0; left:0; width:1000px; box-shadow:none">
+    </div>
 
-                <section>
-                    <h2>Why study bacterial phylogenetics?</h2>
+    <img data-src="transduction_cropped.jpg" class="fragment" data-fragment-index="5"
+                                                              style="position:absolute; top:100px; left:0px; height:250px;">
 
-                    <div style="float:left; width:700px">
+    <img data-src="conjugation.jpg" class="fragment" data-fragment-index="7"
+                                                     style="position:absolute; top:100px; right:0px; height:250px;">
+    <ul>
+        <li class="fragment">Effect of events can be plasmid transfer, insertion or homologous recombination.</li>
+        <li class="fragment">Rate of recombination varies and is subject to selection.</li>
+        <li class="fragment">Focus on homologous recombination: only event which doesn't alter the length of the sequence</li>
+    </ul>
+</section>
+
+<section>
+    <h2>The Problem for Phylogenetic Inference</h2>
+
+    <p>For many bacteria, the ratio between the recombination rate and the mutation rate is extremely high.</p>
+
+    <div class="figure fragment">
+        <img data-src="r2mhist.svg" style="width:800px">
+        <div class="cite">Vos and Didelot, The ISME Journal (2009)</div>
+    </div>
+</section>
+
+<section>
+    <h2>The Benifit for Demographic Inference</h2>
+
+    <img data-src="conversion_alignment.png" style="width:800px">
+
+    <ul>
+        <li class="fragment">Relationship used by
+            <a class="cite" href="http://dx.doi.org/10.1038/nature10231">Li and Durbin, 2011</a>
+            to infer human demographic history from pairs of autosomes.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Existing solutions</h2>
+
+    <ul>
+        <li class="fragment">Pre-processing of data to identify and remove
+            non-vertically inherited material. (eg. START: <a class="cite" href="">Jolley et al., 2001</a>)
+
+            <table style="width:800px">
+                <tr><th style="width:400px">Pros</th> <th>Cons</th></tr>
+                <tr>
+                    <td>
                         <ul>
-                            <li class="fragment" data-fragment-index="1">Bacteria play important rols (both positive and
-                                negative) in the health of animals and
-                                plants.</li>
-                            <li class="fragment" data-fragment-index="2">Many bacteria possess interesting and
-                                <i>expermimentally accessible</i> evolutionary
-                                dynamics.</li>
-                            <li class="fragment" data-fragment-index="3">Bacterial genomes are measurably evolving over
-                                relatively short study periods.
-                                <div class="figure" style="width:500px; position: relative; left: 100px">
-                                    <img data-src="MEP_cropped.png">
-                                    <div class="cite">Drummond &amp; Rambaut, TIEE (2003)</div>
-                                </div>
-                            </li>
+                            <li class="fragment">Can use standard tools for
+                                phylogenetic inference.</li>
                         </ul>
-                    </div>
-                    <div style="float:right; width:250px">
-                        <div class="figure fragment" data-fragment-index="1">
-                            <img data-src="EColiGut_Psa_collage.jpg">
-                        </div>
-                        <div class="figure fragment" data-fragment-index="2">
-                            <img data-src="adaptive_radiation.jpg">
-                            <div class="cite">Rainey &amp; Travisano, Nature (1998)</div>
-                        </div>
-                    </div>
-                </section>
+                    </td>
+                    <td>
+                        <ul>
+                            <li class="fragment">Data is being thrown away.</li>
+                            <li class="fragment">Ad hoc, may bias results.</li>
+                        </ul>
+                    </td>
+                </tr>
 
-                <section>
-                    <h2>Cartoon bacterial population genetics</h2>
+            </table>
+        </li>
 
-                    <div style="position: relative; top:0; left:0; width:1000px; height:400px">
-                    <img data-src="binary_fission_7.svg" class="fragment current-visible" data-fragment-index="1"
-                        style="position:absolute; top:0; left:0; width:1000px; box-shadow:none">
-                    <img data-src="binary_fission_6.svg" class="fragment" data-fragment-index="2"
-                        style="position:absolute; top:0; left:0; width:1000px; box-shadow:none">
-                    <img data-src="binary_fission_5.svg" class="fragment" data-fragment-index="3"
-                        style="position:absolute; top:0; left:0; width:1000px; box-shadow:none">
-                    <img data-src="binary_fission_4.svg" class="fragment" data-fragment-index="4"
-                        style="position:absolute; top:0; left:0; width:1000px; box-shadow:none">
-                    <img data-src="binary_fission_3.svg" class="fragment" data-fragment-index="5"
-                        style="position:absolute; top:0; left:0; width:1000px; box-shadow:none">
-                    <img data-src="binary_fission_2.svg" class="fragment" data-fragment-index="6"
-                        style="position:absolute; top:0; left:0; width:1000px; box-shadow:none">
-                    <img data-src="binary_fission_1.svg" class="fragment" data-fragment-index="7"
-                        style="position:absolute; top:0; left:0; width:1000px; box-shadow:none">
-                    </div>
+        <li class="fragment" style="margin-top:20px">Explicit modelling of bacterial recombination.<br>
+            (eg. ClonalFrame and ClonalOrigin: <a class="cite" href="">Didelot et al., 2007</a>, <a class="cite" href="">2010</a>)
 
-                    <img data-src="transduction_cropped.jpg" class="fragment" data-fragment-index="5"
-                        style="position:absolute; top:100px; left:0px; height:250px;">
+            <table style="width:800px">
+                <tr><th style="width:400px">Pros</th> <th>Cons</th></tr>
+                <tr>
+                    <td>
+                        <ul>
+                            <li class="fragment">Can make use of all data.</li>
+                            <li class="fragment">Can infer additional parameters such as recombination rates.</li>
+                            <li class="fragment">May yield increased confidence in estimates.</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li class="fragment">Models can be complex, with many parameters.</li>
+                            <li class="fragment">Both computationally and statistically challenging.</li>
+                            <li class="fragment">Existing implementations lack flexibility.</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </li>
+    </ul>
 
-                    <img data-src="conjugation.jpg" class="fragment" data-fragment-index="7"
-                        style="position:absolute; top:100px; right:0px; height:250px;">
-                    <ul>
-                        <li class="fragment">Effect of events can be plasmid transfer, insertion or homologous recombination.</li>
-                        <li class="fragment">Rate of recombination varies and is subject to selection.</li>
-                        <li class="fragment">Focus on homologous recombination: only event which doesn't alter the length of the sequence</li>
-                    </ul>
-                </section>
+</section>
 
-                <section>
-                    <h2>The Problem for Phylogenetic Inference</h2>
+<section>
+    <h2>The Coalescent with Gene Conversion</h2>
 
-                    <p>For many bacteria, the ratio between the recombination rate and the mutation rate is extremely high.</p>
+    <div style="position: relative; top:0; left:0; width:1000px; height:500px;">
+        <img data-src="WrightFisherGC1.svg"
+             style="position:absolute; top:0; left:0; width:1000px; box-shadow:none; background-color:white;">
+        <img data-src="WrightFisherGC2.svg" class="fragment"
+            style="position:absolute; top:0; left:0; width:1000px; box-shadow:none; background-color:white;">
+        <img data-src="WrightFisherGC3.svg" class="fragment"
+            style="position:absolute; top:0; left:0; width:1000px; box-shadow:none; background-color:white;">
+        <img data-src="WrightFisherGC3b.svg" class="fragment"
+            style="position:absolute; top:0; left:0; width:1000px; box-shadow:none; background-color:white;">
+        <img data-src="WrightFisherGC4b.svg" class="fragment"
+            style="position:absolute; top:0; left:0; width:1000px; box-shadow:none; background-color:white;">
+        <img data-src="WrightFisherGC5b.svg" class="fragment"
+            style="position:absolute; top:0; left:0; width:1000px; box-shadow:none; background-color:white;">
+    </div>
+    <a class="cite" href="">Wiuf, 1999</a>; <a class="cite" href="">Wiuf and Hein, 2000</a>
 
-                    <div class="figure fragment">
-                        <img data-src="r2mhist.svg" style="width:800px">
-                        <div class="cite">Vos and Didelot, The ISME Journal (2009)</div>
-                    </div>
-                </section>
+    <div class="fragment" style="position:absolute; top:100px; left:0px; width:350px">
+        <table class="params">
+            <tr><th colspan="2">Parameters</th></tr>
+            <tr> <td>$N(t)g$</td> <td>Coalescence rate</td> </tr>
+            <tr> <td>$\rho_s$</td> <td>Recombination rate</td> </tr>
+            <tr> <td>$\delta$</td> <td>Expected tract length</td> </tr>
+        </table>
+    </div>
 
-                <section>
-                    <h2>The Benifit for Demographic Inference</h2>
+</section>
 
-                    <img data-src="conversion_alignment.png" style="width:800px">
-                    
-                    <ul>
-                        <li class="fragment">Relationship used by
-                            <a class="cite" href="http://dx.doi.org/10.1038/nature10231">Li and Durbin, 2011</a>
-                            to infer human demographic history from pairs of autosomes.</li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h2>Existing solutions</h2>
-
-                    <ul>
-                        <li class="fragment">Pre-processing of data to identify and remove
-                            non-vertically inherited material. (eg. START: <a class="cite" href="">Jolley et al., 2001</a>)
-
-                            <table style="width:800px">
-                                <tr><th style="width:400px">Pros</th> <th>Cons</th></tr>
-                                <tr>
-                                    <td>
-                                        <ul>
-                                            <li class="fragment">Can use standard tools for
-                                            phylogenetic inference.</li>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <ul>
-                                            <li class="fragment">Data is being thrown away.</li>
-                                            <li class="fragment">Ad hoc, may bias results.</li>
-                                         </ul>
-                                    </td>
-                                </tr>
-
-                            </table>
-                        </li>
-
-                        <li class="fragment" style="margin-top:20px">Explicit modelling of bacterial recombination.<br>
-                            (eg. ClonalFrame and ClonalOrigin: <a class="cite" href="">Didelot et al., 2007</a>, <a class="cite" href="">2010</a>)
-
-                            <table style="width:800px">
-                                <tr><th style="width:400px">Pros</th> <th>Cons</th></tr>
-                                <tr>
-                                    <td>
-                                        <ul>
-                                            <li class="fragment">Can make use of all data.</li>
-                                            <li class="fragment">Can infer additional parameters such as recombination rates.</li>
-                                            <li class="fragment">May yield increased confidence in estimates.</li>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <ul>
-                                            <li class="fragment">Models can be complex, with many parameters.</li>
-                                            <li class="fragment">Both computationally and statistically challenging.</li>
-                                            <li class="fragment">Existing implementations lack flexibility.</li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                            </table>
-                        </li>
-                    </ul>
-
-                </section>
-
-                <section>
-                    <h2>The Coalescent with Gene Conversion</h2>
-
-                    <div style="position: relative; top:0; left:0; width:1000px; height:500px;">
-                    <img data-src="WrightFisherGC1.svg"
-                        style="position:absolute; top:0; left:0; width:1000px; box-shadow:none; background-color:white;">
-                    <img data-src="WrightFisherGC2.svg" class="fragment"
-                        style="position:absolute; top:0; left:0; width:1000px; box-shadow:none; background-color:white;">
-                    <img data-src="WrightFisherGC3.svg" class="fragment"
-                        style="position:absolute; top:0; left:0; width:1000px; box-shadow:none; background-color:white;">
-                    <img data-src="WrightFisherGC3b.svg" class="fragment"
-                        style="position:absolute; top:0; left:0; width:1000px; box-shadow:none; background-color:white;">
-                    <img data-src="WrightFisherGC4b.svg" class="fragment"
-                        style="position:absolute; top:0; left:0; width:1000px; box-shadow:none; background-color:white;">
-                    <img data-src="WrightFisherGC5b.svg" class="fragment"
-                        style="position:absolute; top:0; left:0; width:1000px; box-shadow:none; background-color:white;">
-                    </div>
-                    <a class="cite" href="">Wiuf, 1999</a>; <a class="cite" href="">Wiuf and Hein, 2000</a>
-
-                    <div class="fragment" style="position:absolute; top:100px; left:0px; width:350px">
-                        <table class="params">
-                            <tr><th colspan="2">Parameters</th></tr>
-                            <tr> <td>$N(t)g$</td> <td>Coalescence rate</td> </tr>
-                            <tr> <td>$\rho_s$</td> <td>Recombination rate</td> </tr>
-                            <tr> <td>$\delta$</td> <td>Expected tract length</td> </tr>
-                        </table>
-                    </div>
-
-                </section>
-			</div>
-		</div>
-
-		<script src="../reveal.js/lib/js/head.min.js"></script>
-		<script src="../reveal.js/js/reveal.js"></script>
-
-		<script>
-			// More info https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-                controls: false,
-                progress: false,
-				history: true,
-                centre: false,
-                mouseWheel: true,
-
-                transition: 'none',
-
-                math: {
-                    mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
-                    config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
-                },
-
-				// More info https://github.com/hakimel/reveal.js#dependencies
-				dependencies: [
-					{ src: '../reveal.js/plugin/markdown/marked.js' },
-					{ src: '../reveal.js/plugin/markdown/markdown.js' },
-					{ src: '../reveal.js/plugin/notes/notes.js', async: true },
-					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-                    { src: '../reveal.js/plugin/math/math.js', async: true }
-				]
-			});
-		</script>
-	</body>
-</html>
