@@ -17,7 +17,7 @@ $backgroundColor: #fff;
 $mainColor: #222;
 $headingColor: #fff;
 
-$mainFontSize: 30px;
+$mainFontSize: 25px;
 $mainFont: 'Source Sans Pro', Helvetica, sans-serif;
 $headingFont: 'Source Sans Pro', Helvetica, sans-serif;
 $headingBackgroundColor: $themeColor;
@@ -29,8 +29,8 @@ $linkColor: #2a76dd;
 $linkColorHover: lighten( $linkColor, 15% );
 $selectionBackgroundColor: lighten( $linkColor, 25% );
 
-$heading1Size: 3.5em;
-$heading2Size: 2.5em;
+$heading1Size: 3.0em;
+$heading2Size: 2.0em;
 $heading3Size: 1.5em;
 $heading4Size: 1.00em;
 
@@ -73,8 +73,6 @@ div.figure img {
 }
 
 div.figure div.cite {
-    position: absolute;
-    right: 20px;
     color: #a00000;
     font-size: 0.5em;
 }
@@ -97,4 +95,6 @@ div.figure div.caption {
     background: red;
 }
 
-
+.reveal p {
+    text-align: left;
+}
