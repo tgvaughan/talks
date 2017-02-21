@@ -187,6 +187,79 @@ theme: theme.css
             <tr> <td>$\delta$</td> <td>Expected tract length</td> </tr>
         </table>
     </div>
-
 </section>
 
+<section>
+    <div class="textbox alert">
+        <div class="title">Problem</div>
+        The space of possible ancestral recombination graphs is extremely
+        large. Even two samples have infinitely many distinct ancestries!
+    </div>
+</section>
+
+<section>
+    <h2>Full ARG</h2>
+
+    <img data-src="full_arg.svg" style="box-shadow:none;width:500px">
+
+    <br>
+    &nbsp;
+</section>
+
+<section>
+    <h2>Approximation 1: ClonalFrame</h2>
+
+    <img data-src="CF_arg.svg" style="box-shadow:none;width:500px">
+
+    <br>
+
+    <a class="cite" href="">Didelot et al., 2007</a>
+</section>
+
+<section>
+    <h2>Approximation 2: ClonalOrigin</h2>
+
+    <img data-src="CO_arg.svg" style="box-shadow:none;width:500px">
+
+    <br>
+
+    <a class="cite" href="">Didelot et al., 2010</a>
+</section>
+
+<section>
+    <h2>Inference under the ClonalOrigin Model</h2>
+
+    <p> Inference follows the standard Bayesian phylogenetic tradition: </p>
+
+    \begin{equation*}
+        f(G,N,\mu,\rho,\delta|A) \propto P_{F}(A|G,\mu)f_{CGC}(G|N,\rho,\delta)f_{\text{prior}}(N
+,\mu,\rho,\delta)
+    \end{equation*}
+
+    <p>where</p>
+
+    <ul>
+        <li>$A$ is the sequence alignment,</li>
+        <li>$\mu$ are the substitution model parameters, and</li>
+        <li>$G$ is the full sample genealogy including clonal frame<br>
+            $T$ and $M$ conversions $\{C_i\}_{i\in[1\ldots M]}$.</li>
+    </ul>
+
+    <p>The genealogy density under ClonalOrigin model can be expanded</p>
+    \begin{equation*}
+        f_{CGC}(G|\rho',\delta,N)=\left(\prod_{i=1}^M f(C_i|T,N,\delta)\right)P(M|T,\rho)f_C(T|N)
+    \end{equation*}
+</section>
+
+<section>
+    <h2>Identifiability</h2>
+
+    Despite using a simplified model, an infinite number of ARGs still
+    possess the same likelihood given a sequence alignment.
+
+    <img class="fragment" data-src="identifiability.svg" style="box-shadow:none;width:800px">
+
+    <blockquote class="fragment">
+        Very important for an MCMC algorithm to propose state changes which minimize effect on likelihood.
+    </blockquote>
+</section>

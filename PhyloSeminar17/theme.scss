@@ -107,6 +107,24 @@ a.cite:hover {
     color: #f00;
 }
 
+// Text box
+div.textbox {
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+    text-align: left;
+    padding: 5px;
+}
+
+div.textbox > .title {
+    margin-bottom: 10px;
+    background: $themeColor;
+    color: $backgroundColor;
+}
+
+div.textbox.alert > .title {
+    background: #f00;
+    color: $backgroundColor;
+}
+
 
 // Parameter table style
 table.params th {
@@ -117,7 +135,7 @@ table.params th {
 
 table.params td {
     border: 0px;
-    background-color: darkgray;
+    background-color: lightgrey;
 }
 
 table.params td:first-child {
