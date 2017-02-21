@@ -134,7 +134,7 @@ category: draft_talk
 
                     <ul>
                         <li class="fragment">Pre-processing of data to identify and remove
-                            non-vertically inherited material. (eg. START: <a href="">Jolley et al., 2001</a>)
+                            non-vertically inherited material. (eg. START: <a class="cite" href="">Jolley et al., 2001</a>)
 
                             <table style="width:800px">
                                 <tr><th style="width:400px">Pros</th> <th>Cons</th></tr>
@@ -157,7 +157,7 @@ category: draft_talk
                         </li>
 
                         <li class="fragment" style="margin-top:20px">Explicit modelling of bacterial recombination.<br>
-                            (eg. ClonalFrame and ClonalOrigin: <a href="">Didelot et al., 2007</a>, <a href="">2010</a>)
+                            (eg. ClonalFrame and ClonalOrigin: <a class="cite" href="">Didelot et al., 2007</a>, <a class="cite" href="">2010</a>)
 
                             <table style="width:800px">
                                 <tr><th style="width:400px">Pros</th> <th>Cons</th></tr>
@@ -178,7 +178,38 @@ category: draft_talk
                                     </td>
                                 </tr>
                             </table>
+                        </li>
                     </ul>
+
+                </section>
+
+                <section>
+                    <h2>The Coalescent with Gene Conversion</h2>
+
+                    <div style="position: relative; top:0; left:0; width:1000px; height:500px;">
+                    <img data-src="WrightFisherGC1.svg"
+                        style="position:absolute; top:0; left:0; width:1000px; box-shadow:none; background-color:white;">
+                    <img data-src="WrightFisherGC2.svg" class="fragment"
+                        style="position:absolute; top:0; left:0; width:1000px; box-shadow:none; background-color:white;">
+                    <img data-src="WrightFisherGC3.svg" class="fragment"
+                        style="position:absolute; top:0; left:0; width:1000px; box-shadow:none; background-color:white;">
+                    <img data-src="WrightFisherGC3b.svg" class="fragment"
+                        style="position:absolute; top:0; left:0; width:1000px; box-shadow:none; background-color:white;">
+                    <img data-src="WrightFisherGC4b.svg" class="fragment"
+                        style="position:absolute; top:0; left:0; width:1000px; box-shadow:none; background-color:white;">
+                    <img data-src="WrightFisherGC5b.svg" class="fragment"
+                        style="position:absolute; top:0; left:0; width:1000px; box-shadow:none; background-color:white;">
+                    </div>
+                    <a class="cite" href="">Wiuf, 1999</a>; <a class="cite" href="">Wiuf and Hein, 2000</a>
+
+                    <div class="fragment" style="position:absolute; top:100px; left:0px; width:350px">
+                        <table class="params">
+                            <tr><th colspan="2">Parameters</th></tr>
+                            <tr> <td>$N(t)g$</td> <td>Coalescence rate</td> </tr>
+                            <tr> <td>$\rho_s$</td> <td>Recombination rate</td> </tr>
+                            <tr> <td>$\delta$</td> <td>Expected tract length</td> </tr>
+                        </table>
+                    </div>
 
                 </section>
 			</div>
@@ -194,6 +225,7 @@ category: draft_talk
                 progress: false,
 				history: true,
                 centre: false,
+                mouseWheel: true,
 
                 transition: 'none',
 

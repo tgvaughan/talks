@@ -73,7 +73,7 @@ div.figure img {
 }
 
 div.figure div.cite {
-    color: #a00000;
+    color: #a00;
     font-size: 0.5em;
 }
 
@@ -97,4 +97,29 @@ div.figure div.caption {
 
 .reveal p {
     text-align: left;
+}
+
+a.cite {
+    color: #a00;
+}
+
+a.cite:hover {
+    color: #f00;
+}
+
+
+// Parameter table style
+table.params th {
+    border: 0px;
+    background-color: darkblue;
+    color: white;
+}
+
+table.params td {
+    border: 0px;
+    background-color: darkgray;
+}
+
+table.params td:first-child {
+    text-align: center;
 }
