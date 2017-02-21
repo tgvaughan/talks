@@ -45,6 +45,9 @@ section.has-dark-background {
 @import "theme";
 // ---------------------------------------------
 
+$citeColor: #a00;
+$alertColor: #f00;
+
 section.titlepage .title {
     font-size: 1.5em;
 }
@@ -73,7 +76,7 @@ div.figure img {
 }
 
 div.figure div.cite {
-    color: #a00;
+    color: $citeColor;
     font-size: 0.5em;
 }
 
@@ -100,11 +103,11 @@ div.figure div.caption {
 }
 
 a.cite {
-    color: #a00;
+    color: $citeColor;
 }
 
 a.cite:hover {
-    color: #f00;
+    color: $citeColor;
 }
 
 // Text box
@@ -121,7 +124,7 @@ div.textbox > .title {
 }
 
 div.textbox.alert > .title {
-    background: #f00;
+    background: $alertColor;
     color: $backgroundColor;
 }
 

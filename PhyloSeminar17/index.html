@@ -254,12 +254,31 @@ theme: theme.css
 <section>
     <h2>Identifiability</h2>
 
-    Despite using a simplified model, an infinite number of ARGs still
-    possess the same likelihood given a sequence alignment.
+    <p>Despite using a simplified model, an infinite number of ARGs still
+    possess the same likelihood given a sequence alignment.</p>
 
     <img class="fragment" data-src="identifiability.svg" style="box-shadow:none;width:800px">
 
     <blockquote class="fragment">
         Very important for an MCMC algorithm to propose state changes which minimize effect on likelihood.
     </blockquote>
+</section>
+
+<section>
+    <h2>MCMC State Proposal Strategy</h2>
+
+    <div style="position: relative; top:0; left:0; width:1000px; height:500px;">
+        <img data-src="collapse_expand4.svg"
+             style="position:absolute; top:0; left:0; width:1000px; box-shadow:none; background-color:white;">
+        <img data-src="collapse_expand3.svg" class="fragment"
+             style="position:absolute; top:0; left:0; width:1000px; box-shadow:none; background-color:white;">
+        <img data-src="collapse_expand2.svg" class="fragment"
+             style="position:absolute; top:0; left:0; width:1000px; box-shadow:none; background-color:white;">
+        <img data-src="collapse_expand1.svg" class="fragment"
+             style="position:absolute; top:0; left:0; width:1000px; box-shadow:none; background-color:white;">
+    </div>
+
+    <ul>
+        <li class="fragment">Attachment points and site tracts of new conversions drawn from prior.</li>
+    </ul>
 </section>
