@@ -7,7 +7,10 @@
 		<title>PhyloSeminar, 2017</title>
 
         <link rel="stylesheet" href="{{site.baseurl}}/reveal.js/css/reveal.css">
-        <link rel="stylesheet" href="theme.css">
+
+        {% if page.theme != nil %}
+        <link rel="stylesheet" href="{{page.theme}}">
+        {% endif %}
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="{{site.baseurl}}/reveal.js/lib/css/zenburn.css">
