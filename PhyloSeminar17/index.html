@@ -132,6 +132,53 @@ category: draft_talk
                 <section>
                     <h2>Existing solutions</h2>
 
+                    <ul>
+                        <li class="fragment">Pre-processing of data to identify and remove
+                            non-vertically inherited material. (eg. START: <a href="">Jolley et al., 2001</a>)
+
+                            <table style="width:800px">
+                                <tr><th style="width:400px">Pros</th> <th>Cons</th></tr>
+                                <tr>
+                                    <td>
+                                        <ul>
+                                            <li class="fragment">Can use standard tools for
+                                            phylogenetic inference.</li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li class="fragment">Data is being thrown away.</li>
+                                            <li class="fragment">Ad hoc, may bias results.</li>
+                                         </ul>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </li>
+
+                        <li class="fragment" style="margin-top:20px">Explicit modelling of bacterial recombination.<br>
+                            (eg. ClonalFrame and ClonalOrigin: <a href="">Didelot et al., 2007</a>, <a href="">2010</a>)
+
+                            <table style="width:800px">
+                                <tr><th style="width:400px">Pros</th> <th>Cons</th></tr>
+                                <tr>
+                                    <td>
+                                        <ul>
+                                            <li class="fragment">Can make use of all data.</li>
+                                            <li class="fragment">Can infer additional parameters such as recombination rates.</li>
+                                            <li class="fragment">May yield increased confidence in estimates.</li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li class="fragment">Models can be complex, with many parameters.</li>
+                                            <li class="fragment">Both computationally and statistically challenging.</li>
+                                            <li class="fragment">Existing implementations lack flexibility.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </table>
+                    </ul>
 
                 </section>
 			</div>
