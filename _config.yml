@@ -24,3 +24,19 @@ markdown: kramdown
 exclude:
   - Gemfile
   - Gemfile.lock
+
+defaults:
+    -
+        scope:
+            path: ""
+        values:
+            reveal:
+                theme: ../reveal.js/css/theme/white.css
+                center: true
+                controls: false
+                progress: false
+                history: false
+                center: false
+                mouseWheel: false
+                slideNumber: false
+                transition: none

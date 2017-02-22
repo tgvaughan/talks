@@ -5,10 +5,14 @@ date: 2017-02-23
 category: draft_talk
 
 layout: presentation
-theme: theme.css
+
+reveal:
+    theme: theme.css
+    slideNumber: true
+    history: true
 ---
 
-<section class="titlepage">
+<section class="titlepage center">
     <h1 class="title">Joint Bayesian inference of bacterial ancestral recombination graphs</h1>
 
     <div class="authors">Tim&nbsp;Vaughan</div>
@@ -96,6 +100,9 @@ theme: theme.css
 
 <section>
     <h2>The Benifit for Demographic Inference</h2>
+
+    <br>
+    <br>
 
     <img data-src="conversion_alignment.png" style="width:800px">
 
@@ -189,7 +196,7 @@ theme: theme.css
     </div>
 </section>
 
-<section>
+<section class="center">
     <div class="textbox alert">
         <div class="title">Problem</div>
         The space of possible ancestral recombination graphs is extremely
@@ -245,10 +252,12 @@ theme: theme.css
             $T$ and $M$ conversions $\{C_i\}_{i\in[1\ldots M]}$.</li>
     </ul>
 
+    <div class="fragment">
     <p>The genealogy density under ClonalOrigin model can be expanded</p>
     \begin{equation*}
         f_{CGC}(G|\rho',\delta,N)=\left(\prod_{i=1}^M f(C_i|T,N,\delta)\right)P(M|T,\rho)f_C(T|N)
     \end{equation*}
+    </div>
 </section>
 
 <section>
@@ -280,5 +289,160 @@ theme: theme.css
 
     <ul>
         <li class="fragment">Attachment points and site tracts of new conversions drawn from prior.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Validation 1: Sampling from the prior</h2>
+
+    <ul>
+        <li> It is trivial to sample directly from the approximate ARG prior
+            via coalescent simulation.</li>
+        <li class="fragment"> We expect precise agreement between our MCMC algorithm and the
+            coalescent simulation when no data is involved.</li>
+    </ul>
+
+    <div class="fragment">
+        <img data-src="validate_CFheight.svg" style="box-shadow:none">
+        <img data-src="validate_meanEdgeLength.svg" style="box-shadow:none">
+        <img data-src="validate_meanTractLength.svg" style="box-shadow:none">
+    </div>
+
+    <blockquote class="alert fragment">
+        One should alwayas test that a new sampler exactly converges to a known
+        distribution: this provides a strict necessary criterion for
+        correctness.
+    </blockquote>
+</section>
+
+<section>
+    <h2>Validation 2: Inference from simulated data</h2>
+
+    <img data-src="posterior_rho.svg" style="box-shadow:none; padding:0; margin:0">
+    <img data-src="posterior_delta.svg" style="box-shadow:none;padding:0;margin:0">
+    <img data-src="posterior_theta.svg" style="box-shadow:none;padding:0;margin:0">
+</section>
+
+<section>
+    <p style="margin:0px">True ARG:</p>
+    <img data-src="true_tree.svg" style="box-shadow:none; padding:0; margin:0; width:800px">
+
+    <p style="margin:0px">Randomly-selected ARG from MCMC:</p>
+    <img data-src="sampled_tree.svg" style="box-shadow:none; padding:0; margin:0; width:800px">
+</section>
+
+<section>
+    <h2>Summary networks</h2>
+
+    <div style="position: relative; top:0; left:0; width:1000px; height:500px;">
+        <img data-src="summarizing6.svg"
+             style="position:absolute; top:0; left:0; width:1000px; box-shadow:none; background-color:white;">
+        <img data-src="summarizing5.svg" class="fragment"
+             style="position:absolute; top:0; left:0; width:1000px; box-shadow:none; background-color:white;">
+        <img data-src="summarizing3.svg" class="fragment"
+             style="position:absolute; top:0; left:0; width:1000px; box-shadow:none; background-color:white;">
+        <img data-src="summarizing2.svg" class="fragment"
+             style="position:absolute; top:0; left:0; width:1000px; box-shadow:none; background-color:white;">
+        <img data-src="summarizing1.svg" class="fragment"
+             style="position:absolute; top:0; left:0; width:1000px; box-shadow:none; background-color:white;">
+        <img data-src="summarizing0.svg" class="fragment"
+             style="position:absolute; top:0; left:0; width:1000px; box-shadow:none; background-color:white;">
+    </div>
+</section>
+
+<section>
+    <p style="margin:0px">True ARG:</p>
+    <img data-src="true_tree.svg" style="box-shadow:none; padding:0; margin:0; width:800px">
+
+    <p style="margin:0px">Summary ARG from MCMC:</p>
+    <img data-src="summary_tree.svg" style="box-shadow:none; padding:0; margin:0; width:800px">
+</section>
+
+<section>
+    <h2>Application to <i>Escherichia coli</i></h2>
+
+    <ul>
+        <li>Applied method to <i>E. coli</i> O157/O26 sequences collected by Tessy George (<sup>m</sup>EpiLab, Massey University, New Zealand).</li>
+        <li>Sequences for 53 rMLST genes (21.1 kb total) from each of 23 human and cattle-derived isolates.</li>
+        <li>Analyzed using fixed expected tract length parameter and informative prior on conversion rate parameter.</li>
+    </ul>
+
+    <img data-src="Tessy_rMLST_splitstree.svg" style="width:900px;box-shadow:none">
+</section>
+
+<section>
+    <h2>Application to <i>Escherichia coli</i></h2>
+
+    <div style="position: relative; top:0; left:0; width:1000px; height:600px;">
+        <img data-src="Tessy_new_summary2.svg" style="position:absolute;top:0;left:0;width:1000px;box-shadow:none;background-color:white">
+        <img class="fragment" data-src="Tessy_new_summary2_compare.svg" style="position:absolute;top:0;left:0;width:1000px;box-shadow:none;background-color:white">
+    </div>
+</section>
+
+<section>
+    <h2>Software implementation</h2>
+
+    <img data-src="bacter_logo.svg" style="width:500px;box-shadow:none">
+
+    <ul>
+        <li>BEAST 2 package that performs inference under the ClonalOrigin model.</li>
+        <li>Joint inference of the clonal frame, recombinant edges and parameters.</li>
+        <li>Can be combined with usual variety of substitution models, parametric population models and parameter priors.</li>
+        <li>GUI analysis configuration via BEAUti.</li>
+    </ul>
+
+    <br>
+    <br>
+
+    <a href="http://tgvaughan.github.io/bacter">tgvaughan.github.io/bacter</a>
+</section>
+
+<section>
+     <h2>Bacter limitations</h2>
+
+     <ul>
+         <li>Computational complexity scales with the number of proposed conversions.
+             <ul>
+                 <li>This can be arbitrarily large, even for small sample sets.</li>
+                 <li>Cannot use the BEAGLE phylogenetic likelihood library to speed things up due
+                     to peculiarities of ARG likelihood computation.</li>
+             </ul>
+         </li>
+         <li>MCMC algorithm used does not intelligently locate conversions.
+             <ul>
+                 <li>Looking at addressing this in the near future.</li>
+             </ul>
+         </li>
+
+         <li>Summary algorithm can produce peculiar results.
+             <ul>
+                 <li>More research needs to be done to find a better algorithm.</li>
+             </ul>
+         </li>
+     </ul>
+</section>
+
+<section>
+    <h2>Acknowledgements</h2>
+
+    <ul>
+        <li>Members of <sup><i>m</i></sup>EpiLab, Massey University, New Zealand
+            <ul>
+                <li>Patrick Biggs, Tessy George and Nigel French (providing hard-won data)</li>
+            </ul>
+            <br>
+        </li>
+        <li>Members of the Centre for Computational Evolution, University of Auckland, New Zealand
+            <br>
+            <br>
+        </li>
+        <li>The following organizations:<br><br>
+            <div style="text-align:center">
+                <img data-src="UoA_logo.svg" style="box-shadow:none;height:80px">
+                <img data-src="Massey_logo.svg" style="box-shadow:none;height:80px;padding-left:50px"><br>
+                <img data-src="AWC_logo.svg" style="box-shadow:none;height:80px">
+                <img data-src="MF_logo.png" style="box-shadow:none;height:80px;padding-left:100px">
+            </div>
+        </li>
     </ul>
 </section>

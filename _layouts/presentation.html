@@ -4,12 +4,12 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>PhyloSeminar, 2017</title>
+        <title>{{page.title}}</title>
 
         <link rel="stylesheet" href="{{site.baseurl}}/reveal.js/css/reveal.css">
 
         {% if page.theme != nil %}
-        <link rel="stylesheet" href="{{page.theme}}">
+        <link rel="stylesheet" href="{{page.reveal.theme}}">
         {% endif %}
 
 		<!-- Theme used for syntax highlighting of code -->
@@ -40,13 +40,14 @@
 		<script>
 			// More info https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
-                controls: false,
-                progress: false,
-				history: true,
-                centre: false,
-                mouseWheel: true,
+                controls: {{page.reveal.controls}},
+                progress: {{page.reveal.progress}},
+                history: {{page.reveal.history}},
+                center: {{page.reveal.center}},
+                mouseWheel: {{page.reveal.mouseWheel}},
+                slideNumber: {{page.reveal.slideNumber}},
 
-                transition: 'none',
+                transition: '{{page.reveal.transition}}',
 
                 math: {
                     mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
