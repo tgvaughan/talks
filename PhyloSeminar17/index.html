@@ -376,6 +376,7 @@ reveal:
     <div style="position: relative; top:0; left:0; width:1000px; height:600px;">
         <img data-src="Tessy_new_summary2.svg" style="position:absolute;top:0;left:0;width:1000px;box-shadow:none;background-color:white">
         <img class="fragment" data-src="Tessy_new_summary2_compare.svg" style="position:absolute;top:0;left:0;width:1000px;box-shadow:none;background-color:white">
+        <img class="fragment" data-src="gene_flow.svg" style="position:absolute;top:0;left:0;width:250px;background-color:white;padding:20px">
     </div>
 </section>
 
@@ -384,42 +385,51 @@ reveal:
 
     <img data-src="bacter_logo.svg" style="width:500px;box-shadow:none">
 
-    <ul>
-        <li>BEAST 2 package that performs inference under the ClonalOrigin model.</li>
-        <li>Joint inference of the clonal frame, recombinant edges and parameters.</li>
-        <li>Can be combined with usual variety of substitution models, parametric population models and parameter priors.</li>
-        <li>GUI analysis configuration via BEAUti.</li>
-    </ul>
-
-    <br>
     <br>
 
     <a href="http://tgvaughan.github.io/bacter">tgvaughan.github.io/bacter</a>
+
+    <br>
+    <br>
+
+    <ul>
+        <li class="fragment">BEAST 2 package that performs inference under the ClonalOrigin model.</li>
+        <li class="fragment">Joint inference of the clonal frame, recombinant edges and parameters.</li>
+        <li class="fragment">Can be combined with usual variety of substitution models, parametric population models and parameter priors.</li>
+        <li class="fragment">GUI analysis configuration via BEAUti.</li>
+    </ul>
 </section>
 
 <section>
      <h2>Bacter limitations</h2>
 
+     <div style="float:left;width:600px">
      <ul>
-         <li>Computational complexity scales with the number of proposed conversions.
+         <li class="fragment">Computational complexity scales with the number of proposed conversions.
              <ul>
-                 <li>This can be arbitrarily large, even for small sample sets.</li>
-                 <li>Cannot use the BEAGLE phylogenetic likelihood library to speed things up due
+                 <li class="fragment">This can be arbitrarily large, even for small sample sets.</li>
+                 <li class="fragment">Cannot use the BEAGLE phylogenetic likelihood library to speed things up due
                      to peculiarities of ARG likelihood computation.</li>
              </ul>
          </li>
-         <li>MCMC algorithm used does not intelligently locate conversions.
+         <li class="fragment">MCMC algorithm used does not intelligently locate conversions.
              <ul>
-                 <li>Looking at addressing this in the near future.</li>
+                 <li class="fragment">Looking at addressing this in the near future.</li>
              </ul>
          </li>
 
-         <li>Summary algorithm can produce peculiar results.
+         <li class="fragment">Summary algorithm can produce peculiar results.
              <ul>
                  <li>More research needs to be done to find a better algorithm.</li>
              </ul>
          </li>
      </ul>
+     </div>
+     <div style="float:right">
+         <br>
+         <br>
+         <img data-src="ointment.svg" style="width:300px;box-shadow:none;"/>
+     </div>
 </section>
 
 <section>
