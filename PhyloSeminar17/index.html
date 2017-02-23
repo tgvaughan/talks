@@ -29,11 +29,11 @@ reveal:
 
     <div style="float:left; width:700px">
         <ul>
-            <li class="fragment" data-fragment-index="1">Bacteria play important rols (both positive and
+            <li class="fragment" data-fragment-index="1">Bacteria play important roles (both positive and
                 negative) in the health of animals and
                 plants.</li>
             <li class="fragment" data-fragment-index="2">Many bacteria possess interesting and
-                <i>expermimentally accessible</i> evolutionary
+                <i>experimentally accessible</i> evolutionary
                 dynamics.</li>
             <li class="fragment" data-fragment-index="3">Bacterial genomes are measurably evolving over
                 relatively short study periods.
@@ -96,21 +96,6 @@ reveal:
         <img data-src="r2mhist.svg" style="width:800px">
         <div class="cite">Vos and Didelot, The ISME Journal (2009)</div>
     </div>
-</section>
-
-<section>
-    <h2>The Benifit for Demographic Inference</h2>
-
-    <br>
-    <br>
-
-    <img data-src="conversion_alignment.png" style="width:800px">
-
-    <ul>
-        <li class="fragment">Relationship used by
-            <a class="cite" href="http://dx.doi.org/10.1038/nature10231">Li and Durbin, 2011</a>
-            to infer human demographic history from pairs of autosomes.</li>
-    </ul>
 </section>
 
 <section>
@@ -220,7 +205,8 @@ reveal:
 
     <br>
 
-    <a class="cite" href="">Didelot et al., 2007</a>
+    <a class="cite" href="">Didelot et al., 2007 (ClonalFrame)</a>;
+    <a class="cite" href="">Didelot and Wilson, 2015 (ClonalFrameML)</a>
 </section>
 
 <section>
@@ -230,8 +216,18 @@ reveal:
 
     <br>
 
-    <a class="cite" href="">Didelot et al., 2010</a>
+    <a class="cite" href="">Didelot et al., 2010 (ClonalOrigin)</a>;
+    <a class="cite" href="">Ansari and Didelot, 2014 (ClonalOrigin')</a>
 </section>
+
+<section class="center">
+    <div class="textbox" style="width:600px;position:relative;left:200px">
+        <div class="title">Our Goal</div>
+        To conduct Bayesian inference of the full ARG under the ClonalOrigin
+        model, optionally under non-trivial population size dynamics.
+    </div>
+</section>
+
 
 <section>
     <h2>Inference under the ClonalOrigin Model</h2>
@@ -327,8 +323,10 @@ reveal:
     <p style="margin:0px">True ARG:</p>
     <img data-src="true_tree.svg" style="box-shadow:none; padding:0; margin:0; width:800px">
 
-    <p style="margin:0px">Randomly-selected ARG from MCMC:</p>
-    <img data-src="sampled_tree.svg" style="box-shadow:none; padding:0; margin:0; width:800px">
+    <div class="fragment">
+        <p style="margin:0px">Randomly-selected ARG from MCMC:</p>
+        <img data-src="sampled_tree.svg" style="box-shadow:none; padding:0; margin:0; width:800px">
+    </div>
 </section>
 
 <section>
@@ -354,8 +352,10 @@ reveal:
     <p style="margin:0px">True ARG:</p>
     <img data-src="true_tree.svg" style="box-shadow:none; padding:0; margin:0; width:800px">
 
-    <p style="margin:0px">Summary ARG from MCMC:</p>
-    <img data-src="summary_tree.svg" style="box-shadow:none; padding:0; margin:0; width:800px">
+    <div class="fragment">
+        <p style="margin:0px">Summary ARG from MCMC:</p>
+        <img data-src="summary_tree.svg" style="box-shadow:none; padding:0; margin:0; width:800px">
+    </div>
 </section>
 
 <section>
@@ -401,6 +401,51 @@ reveal:
 </section>
 
 <section>
+    <h2>Recombination and Demographic Inference</h2>
+
+    <br>
+    <br>
+
+    <img data-src="conversion_alignment.png" style="width:800px">
+
+    <ul>
+        <li class="fragment">Relationship used by
+            <a class="cite" href="http://dx.doi.org/10.1038/nature10231">Li and Durbin, 2011</a>
+            to infer human demographic history from pairs of autosomes.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Bayesian Skyline Plots in Bacter</h2>
+
+    <img data-src="skyline_icon.svg" style="box-shadow:none;width:400px">
+
+    <ul>
+        <li class="fragment">Bacter implements a non-parametric demographic history model inspired by the standard Bayesian Skyline Plot <a href="https://doi.org/10.1093/molbev/msi103">(Drummond et al., 2005)</a>.</li>
+        <li class="fragment">In principle can reconstruct non-trivial dynamics from very few genomes.</li>
+        <li class="fragment">In practice, this is limited by the computational expense of the algorithm.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Piecewise constant/linear population model</h2>
+
+    <div style="position: relative; top:0; left:0; width:1000px; height:600px;">
+        <img data-src="skyline_diagram.svg" style="position:absolute;left:0;top:0;width:1000px;box-shadow:none">
+        <img class="fragment" data-src="skyline_linear_diagram.svg" style="position:absolute;left:0;top:0;width:1000px;box-shadow:none;background-color:white">
+    </div>
+</section>
+
+<section>
+    <h2>Inference example</h2>
+
+    <img data-src="skyline_tree.svg" style="width:700px;box-shadow:none;margin:0">
+
+
+    <img class="fragment" data-src="popfun_inf.svg" style="width:800px;margin-top:0">
+</section>
+
+<section>
      <h2>Bacter limitations</h2>
 
      <div style="float:left;width:600px">
@@ -411,14 +456,16 @@ reveal:
                  <li class="fragment">Cannot use the BEAGLE phylogenetic likelihood library to speed things up due
                      to peculiarities of ARG likelihood computation.</li>
              </ul>
+             <br>
          </li>
          <li class="fragment">MCMC algorithm used does not intelligently locate conversions.
              <ul>
                  <li class="fragment">Looking at addressing this in the near future.</li>
              </ul>
+             <br>
          </li>
 
-         <li class="fragment">Summary algorithm can produce peculiar results.
+         <li class="fragment">Network summary algorithm can produce peculiar results.
              <ul>
                  <li>More research needs to be done to find a better algorithm.</li>
              </ul>
