@@ -1,0 +1,122 @@
+---
+title: IcyTree Lightning Talk
+meeting: Tree Visualization Workshop
+date: 2017-05-04
+category: talk
+
+layout: presentation
+
+reveal:
+    theme: theme.css
+    slideNumber: true
+    history: true
+---
+
+<section class="titlepage center" data-background="arg.png">
+    <h1 class="title">
+        <img data-src="icytree.png" style="vertical-align:middle;box-shadow:none">
+        IcyTree
+        <img data-src="icytree.png" style="vertical-align:middle;box-shadow:none">
+    </h1>
+    <h2 class="subtitle">
+        Quick and easy browser-based<br>
+        phylogenetic visualization
+    </h2>
+
+    <div class="authors">Tim&nbsp;Vaughan</div>
+
+    <div class="institution">Centre for Computational Evolution<br>
+        University of Auckland, New Zealand</div>
+
+    <div class="date">Tree Visualization Workshop, May 4&ndash;5, 2017</div>
+</section>
+
+<section>
+    <h2>Why <i>another</i> tree viewer?</h2>
+
+    <ul class="spaced">
+        <li>Existing viewers didn't do what I wanted them to do:
+            <ol>
+                <li>Load (and reload) tree files quickly.</li>
+                <li>Allow copying and pasting of serialized trees (useful
+                    for debugging complex phylogenetic inference algorithms).</li>
+                <li>Allow easy exploration of trees using maps-style pan/zoom.</li>
+                <li>Provide keyboard shortcuts for <b>all</b> functions.</li>
+                <li>Handle BEAST-style node annotations.</li>
+                <li>Understand extended Newick format for phylogenetic networks.</li>
+            </ol>
+        </li>
+
+        <li>Having a web-based tool solves deployment.</li>
+
+        <li>Existing web-based viewers (in 2013) all seemed to require communication with a server, which made them relatively slow to use from New Zealand.</li>
+    </ul>
+
+</section>
+
+<section>
+    <h2>Development Philosophy</h2>
+
+    <ol class="spaced" style="margin-top:1em">
+        <li>Aimed primarily at visualizing output of computational inference
+            tools (BEAST 1&amp;2, MrBayes, ...).</li>
+        <li>Focus is solely on <b>rooted</b> trees/networks.</li>
+        <li><b>Viewing only</b> - no editing. (Although rerooting is now possible.)</li>
+        <li><b>Ease of use</b> takes priority over feature count.</li>
+        <li>Usability for <b>experienced users</b> takes priority over usability for
+            new users. (Where there is a trade-off.)</li>
+    </ol>
+</section>
+
+<section>
+    <h2>Features</h2>
+
+    <ul>
+        <li>100% JavaScript: to load, point (Chrome/Firefox/Safari) at <a
+        href="http://icytree.org">icytree.org</a>.</li>
+        <li>Load tree files from the menu, drag-and-drop or by pasting their contents into a dialog box.</li>
+        <li>BEAST Nexus, Newick, Extended Newick, PhyloXML and NeXML input/output support.</li>
+        <li>SVG/PNG/JPEG export support.</li>
+        <li>Mouse pan/zoom.</li>
+        <li>Style options accessible via single key-press.</li>
+        <li>Logarithmic time scale for easy viewing of coalescent-like trees.</li>
+        <li>Practical strategy for drawing phylogenetic time networks such as ARGs.</li>
+    </ul>
+
+</section>
+
+<section class="center">
+    <h2><a href="http://icytree.org" target="_demo">Demonstration</a></h2>
+</section>
+
+<section>
+    <h2>Shareable visualization workflow?</h2>
+
+    <ul>
+        <li>IcyTree neither reads nor writes style information from/to tree files.</li>
+        <li>Reproducing an IcyTree state currently requires both the input file and a list of
+            style options that need to be set by the user.</li>
+        <li>Internally, IcyTree maintains a TreeStyle object that contains this missing style
+            information.</li>
+        <li>This object could be trivially serialized and shared with the tree file to
+            enable sharing of the visualization workflow.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>More information</h2>
+
+    <ul class="spaced">
+        <li>Recent Bioinformatics article: <a href="http://dx.doi.org/10.1093/bioinformatics/btx155">10.1093/bioinformatics/btx155</a>.</li>
+
+        <li>Online IcyTree manual: <a
+        href="http://icytree.org/manual">icytree.org/manual</a>. (Also
+    accessible from the IcyTree Help menu.</li>
+
+        <li>The IcyTree GitHub repository: <a href="http://github.com/tgvaughan/icytree">github.com/tgvaughan/icytree</a>.
+            <ul>
+                <li>Open issues to request features or fix bugs.</li>
+                <li>Fork it, hack it, send me a pull request!</li>
+            </ul></li>
+    </ul>
+</section>
