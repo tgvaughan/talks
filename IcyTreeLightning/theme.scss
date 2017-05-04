@@ -23,7 +23,7 @@ $mainFontSize: 30px;
 $mainFont: 'Source Sans Pro', Helvetica, sans-serif;
 $headingFont: serif;
 $headingColor: $themeColor;
-$headingBackgroundColor: $backgroundColor;
+$headingBackgroundColor: rgba(255,255,255,0);
 $headingTextShadow: none;
 $headingLetterSpacing: normal;
 $headingTextTransform: none;
@@ -51,9 +51,11 @@ section.has-dark-background {
 $citeColor: #a00;
 $alertColor: #f00;
 
-section.titlepage .title {
-    background-color: rgba(255,255,255,0);
+.backgrounds {
+    opacity: 0.1 !important;
 }
+
+section.titlepage .title { }
 
 section.titlepage .subtitle {
     color: $backgroundColor;
