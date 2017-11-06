@@ -25,13 +25,13 @@ $headingBackgroundColor: $themeColor;
 $headingTextShadow: none;
 $headingLetterSpacing: normal;
 $headingTextTransform: none;
-$headingFontWeight: 600;
+$headingFontWeight: normal;
 $linkColor: #2a76dd;
 $linkColorHover: lighten( $linkColor, 15% );
 $selectionBackgroundColor: lighten( $linkColor, 25% );
 
-$heading1Size: 3.0em;
-$heading2Size: 2.0em;
+$heading1Size: 2.0em;
+$heading2Size: 1.8em;
 $heading3Size: 1.5em;
 $heading4Size: 1.00em;
 
