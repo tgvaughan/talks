@@ -48,18 +48,27 @@ reveal:
   <h2>The Classification Problem</h2>
 
   <ul>
-    <li>
+    <li>Reliable identification of stem cells using molecular markers challenging.</li>
+    <li>In vivo transplantation assays provide only reliable method. These however
+      <ul>
+        <li>take a long time and</li>
+        <li>only identify cells retrospectively: not useful for
+        further analysis of the identified cells.</li>
+    </ul></li>
+    <li>In contrast, fluorescence activated cell sorting yields enriched populations of HSCs.
+      <ul>
+        <li>Approximately 50% purity of resulting HSC population</li>
+    </ul></li>
   </ul>
 </section>
 
 <section>
   <h2>Lineage trees</h2>
 
-  <div class="figure" style="float:left">
-    <img data-src="lineage_tree.png" style="height:540px">
-    <div class="cite">Skylaki, Hilsenbeck &amp; Schroeder; Nat. Biotech., 2016</div>
+  <div class="figure" style="float:left;width:400px">
+    <img data-src="lineage_tree.png" style="height:500px">
+    <div class="cite">Skylaki, Hilsenbeck &amp; Schroeder,<br>Nature Biotech., 2016</div>
   </div>
-
   <div class="figure" style="float:right">
     <ul>
       <li>MPP root:<br>
@@ -72,31 +81,113 @@ reveal:
 
 <section class="center">
   <blockquote>
-    How can we use the respective "shapes" of these trees to
+    How can we use the respective emergent "shapes" of these trees to
     distinguish those rooted by an HSC from those rooted by an MPP?
   </blockquote>
 </section>
 
 <section>
   <h2>Phylodynamics</h2>
+
+  <ul>
+    <li>Term introduced by Grenfell et al. (Science, 2004)</li>
+    <li>Refers to the interplay between "immunodynamics, epidemiology
+      and evolutionary biology", and the effect this has on the
+      <b>shape of pathogen phylogenies</b>.
+  </ul>
+
+  <div class="figure">
+    <img data-src="vpd_popsize.png" style="height:300px">
+    <img data-src="vpd_struct.png" style="height:300px">
+    <img data-src="vpd_select.png" style="height:300px">
+
+    <div class="cite" style="float:right">Volz and Bedford, 2013</div>
+  </div>
 </section>
 
 <section>
-  <h2>Phylodynamic model for lineage trees</h2>
+  <h2>Phylogenetic fingerprinting</h2>
+
+  <div class="figure">
+    <img data-src="phylogenies.png" style="height:500px;box-shadow:none"><br>
+    <div class="cite" style="float:left">Grenfell et al., Science, 2014</div>
+  </div>
+</section>
+
+<section>
+  <h2>"Phylodynamic" model for lineage trees</h2>
 </section>
 
 <section>
   <h2>Bayesian inference and classification</h2>
+
+
+  <p>Our model allows us to compute the following joint probability for a lineage tree and its potentiality states, conditioned on the root state $r$:
+  $$P(T,A|\vec{\theta},r)$$</p>
+
+  <ul>
+    <li>Assume that we have $N$ lineage trees $T_u$ with unknown root type and $M$ trees $T_k$ with known root types.</li>
+    <li>Parameters are shared between all trees, so the joint probability of all lineage trees and their poentiality states is:
+      $$\begin{align}
+      P(\vec{T}_k,\vec{T}_u,\vec{A}_k,\vec{A}_u,\vec{r}_u,\vec{\theta}|\vec{r}_k) =&amp; \left(\prod_i P(T_u^{(i)},A_u^{(i)}|\vec{\theta},r_u^{(i)})P(r_u^{(i)})\right)\\
+      &amp;\times\left(\prod_j P(T_k^{(j)},A_k^{(i)}|\vec{\theta},r_k^{(i)})\right)P(\vec{\theta})
+      \end{align}$$
+      </li>
+    <li>Bayes rule and marginalizing yields posterior for $\vec{r}_u$ and $\theta$.</li>
+  </ul>
+
+</section>
+
+<section>
+  <h2>Marginalizing over internal types</h2>
+
+  <ul>
+    <li>Maximum of 7 cells/edges in lineage tree</li>
+    <li>Even allowing for unphysical type transitions, maximum of 128 type configurations.</li>
+    <li>Easy to marginalize over these configurations exactly!</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Test data set</h2>
 </section>
 
 <section>
   <h2>Preliminary results</h2>
+
+  <!-- Cell fate probabilities -->
+  <!-- Scale parameters -->
+  <!-- Shape parameters -->
+
+  <!-- Root type posteriors -->
+  <!-- HSC count posterior -->
 </section>
 
 <section>
-  <h2>Future work</h2>
+  <h2>Future goals</h2>
+
+  <ul style="margin-top:10%">
+    <li>Validate inference method through:
+      <ul><li>application to simulated lineage trees</li>
+        <li>comparison with other statistical classification techniques (e.g. non-phylogenetic ML)</li>
+        <li>independent testing of identified stem cells.</li>
+    </ul></li>
+
+    <li>Assess the potential for applying existing phylodynamic models (e.g. birth/death, structured population models) to the modelling of cell lineage trees.</li>
+  </ul>
 </section>
 
-<section>
+<section class="center">
   <h2>Acknowledgements</h2>
+
+
+  <ul style="margin-top:10%;margin-bottom:0%">
+    <li><b>Stavroula Skylaki</b>, <b>Konstantinos Kokkaliaris</b> and <b>Timm Schroeder</b>
+    at the Department of Biosystems Science and Engineering, ETH
+    Z&uuml;rich for providing an amazing set of lineage trees. (Paper to appear soon.)</li>
+  </ul>
+
+  <img data-src="cEvo_logo.png" style="width:300px;box-shadow:none;margin-top:5%">
+  <img data-src="bsse_logo.gif" style="width:300px;box-shadow:none;margin-top:5%">
+  <img data-src="eth_logo.png" style="width:300px;box-shadow:none;margin-top:5%">
 </section>
