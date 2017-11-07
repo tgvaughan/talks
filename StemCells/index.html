@@ -148,13 +148,15 @@ reveal:
   <h2>Marginalizing over internal types</h2>
 
   <ul>
-    <li>Maximum of 7 cells/edges in lineage tree</li>
-    <li>Even allowing for unphysical type transitions, maximum of 128 type configurations.</li>
+    <li>Maximum of 7 cells/edges in 3-generation lineage tree.</li>
+    <li>Allowing for unphysical transitions, maximum of 128 type configurations.</li>
     <li>In reality, far fewer. (E.g. half eleminated by considering only one configuration exists with MPP root cell.)</li>
     <li>Easy to marginalize over these configurations exactly!</li>
   </ul>
 
-  <img data-src="marginalization.svg" style="width:100%;box-shadow:none">
+  <img data-src="marginalization.svg" style="width:90%;box-shadow:none">
+
+  <p style="margin-top:-0.5em">Use MCMC to sample $P(\theta,\vec{r}_u|\vec{T}_k,\vec{T}_u,\vec{r}_k)$: posterior for unknown cell types.</p>
 </section>
 
 <section>
