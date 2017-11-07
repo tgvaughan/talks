@@ -30,16 +30,16 @@ reveal:
 <section>
   <h2>Stem cells</h2>
 
-  <ul>
+  <ul class="spaced">
     <li>Undifferentiated cells with the ability to differentiate into
     arbitrary specialized cell types.</li>
-    <li>Two main sources:
+    <li class="fragment">Two main sources:
       <ol>
         <li>Embryonic tissue (embryonic stem cells)</li>
         <li>Adult tissue (adult stem cells)</li>
       </ol>
-    <li>Adult stem cells important for tissue regeneration and repair.</li>
-    <li>Hemapoietic stem cells (HSCs) are the source of all blood
+    <li class="fragment">Adult stem cells important for tissue regeneration and repair.</li>
+    <li class="fragment">Hemapoietic stem cells (HSCs) are the source of blood
     cells in the body.</li>
   </ul>
 
@@ -48,17 +48,18 @@ reveal:
 <section>
   <h2>The Classification Problem</h2>
 
-  <ul>
+  <ul class="spaced">
     <li>Reliable identification of stem cells using molecular markers challenging.</li>
-    <li>In vivo transplantation assays provide only reliable method. These however
+    <li class="fragment">In vivo transplantation assays provide only reliable method. These however
       <ul>
         <li>take a long time and</li>
         <li>only identify cells retrospectively: not useful for
         further analysis of the identified cells.</li>
     </ul></li>
-    <li>In contrast, fluorescence activated cell sorting yields enriched populations of HSCs.
+    <li class="fragment">In contrast, fluorescence activated cell sorting yields enriched populations of HSCs.
       <ul>
         <li>Approximately 50% purity of resulting HSC population</li>
+        <li>Remainder are multipotent progenitor (MPP) cells</li>
     </ul></li>
   </ul>
 </section>
@@ -70,11 +71,11 @@ reveal:
     <img data-src="lineage_tree.png" style="height:500px">
     <div class="cite">Skylaki, Hilsenbeck &amp; Schroeder,<br>Nature Biotech., 2016</div>
   </div>
-  <div class="figure" style="float:right">
+  <div class="figure fragment" style="float:right">
     <ul>
       <li>MPP root:<br>
     <img data-src="hsc.png" style="width:450px"/></li>
-    <li style="margin-top:0.5em">HSC(?) root:<br>
+    <li class="fragment" style="margin-top:0.5em">HSC(?) root:<br>
     <img data-src="mpp.png" style="width:450px"/></li>
     </ul>
 </section>
@@ -92,15 +93,15 @@ reveal:
 
   <ul>
     <li>Term introduced by Grenfell et al. (Science, 2004)</li>
-    <li>Refers to the interplay between "immunodynamics, epidemiology
+    <li class="fragment">Refers to the interplay between "immunodynamics, epidemiology
       and evolutionary biology", and the effect this has on the
       <b>shape of pathogen phylogenies</b>.
   </ul>
 
-  <div class="figure">
+  <div class="figure fragment">
     <img data-src="vpd_popsize.png" style="height:300px">
-    <img data-src="vpd_struct.png" style="height:300px">
-    <img data-src="vpd_select.png" style="height:300px">
+    <img class="fragment" data-src="vpd_struct.png" style="height:300px">
+    <img class="fragment" data-src="vpd_select.png" style="height:300px">
 
     <div class="cite" style="float:right">Volz and Bedford, 2013</div>
   </div>
@@ -118,10 +119,11 @@ reveal:
 <section>
   <h2>"Phylodynamic" model for lineage trees</h2>
 
-  <img data-src="model.svg" style="width:100%;box-shadow:none">
+  <img data-src="model1.svg" style="width:50%;box-shadow:none">
+  <img class="fragment" data-src="model2.svg" style="width:30%;box-shadow:none;margin-left:10%">
 
-  <p style="font-size:0.9em">Define $\theta=(p_D^{HSC/MPP},p_A^{HSC/MPP},p_N^{HSC/MPP},
-    \lambda_D^{HSC/MPP},\lambda_A^{HSC/MPP},q_0,q_1,q_2)$</p>
+  <p class="fragment" style="font-size:0.8em">Define $\theta=(p_D^{HSC/MPP},p_A^{HSC/MPP},p_N^{HSC/MPP},
+    \lambda_D^{HSC/MPP},\lambda_A^{HSC/MPP},k_D^{HSC/MPP},k_A^{HSC/MPP},q_0,q_1,q_2)$</p>
 </section>
 
 <section>
@@ -132,14 +134,14 @@ reveal:
   $$P(T,A|\theta,r)$$</p>
 
   <ul>
-    <li>Assume that we have $N$ lineage trees $T_u$ with unknown root type and $M$ trees $T_k$ with known root types.</li>
-    <li>Parameters are shared between all trees, so the joint probability of all lineage trees and their poentiality states is:
+    <li class="fragment">Assume that we have $N$ lineage trees $T_u$ with unknown root type and $M$ trees $T_k$ with known root types.</li>
+    <li class="fragment">Parameters are shared between all trees, so the joint probability of all lineage trees and their poentiality states is:
       $$\begin{align}
       P(\vec{T}_k,\vec{T}_u,\vec{A}_k,\vec{A}_u,\vec{r}_u,\theta|\vec{r}_k) =&amp; \left(\prod_{i=1}^N P(T_u^{(i)},A_u^{(i)}|\theta,r_u^{(i)})P(r_u^{(i)})\right)\\
       &amp;\times\left(\prod_{j=1}^M P(T_k^{(j)},A_k^{(j)}|\theta,r_k^{(j)})\right)P(\theta)
       \end{align}$$
       </li>
-    <li>Bayes rule and marginalizing yields posterior for $\vec{r}_u$ and $\theta$.</li>
+    <li class="fragment">Bayes rule and marginalizing yields posterior for $\vec{r}_u$ and $\theta$.</li>
   </ul>
 
 </section>
@@ -148,23 +150,32 @@ reveal:
   <h2>Marginalizing over internal types</h2>
 
   <ul>
-    <li>Maximum of 7 cells/edges in 3-generation lineage tree.</li>
-    <li>Allowing for unphysical transitions, maximum of 128 type configurations.</li>
-    <li>In reality, far fewer. (E.g. half eleminated by considering only one configuration exists with MPP root cell.)</li>
-    <li>Easy to marginalize over these configurations exactly!</li>
+    <li class="fragment">Maximum of 7 cells/edges in 3-generation lineage tree.</li>
+    <li class="fragment">Allowing for unphysical transitions, maximum of 128 type configurations.</li>
+    <li class="fragment">In reality, far fewer. (E.g. half eleminated by considering only one configuration exists with MPP root cell.)</li>
+    <li class="fragment">Easy to marginalize over these configurations exactly!</li>
   </ul>
 
-  <img data-src="marginalization.svg" style="width:90%;box-shadow:none">
+  <img class="fragment" data-src="marginalization.svg" style="width:90%;box-shadow:none">
 
-  <p style="margin-top:-0.5em">Use MCMC to sample $P(\theta,\vec{r}_u|\vec{T}_k,\vec{T}_u,\vec{r}_k)$: posterior for unknown cell types.</p>
+  <p class="fragment" style="margin-top:-0.5em">Use MCMC to sample $P(\theta,\vec{r}_u|\vec{T}_k,\vec{T}_u,\vec{r}_k)$: posterior for unknown cell types.</p>
 </section>
 
 <section>
   <h2>Test data set</h2>
 
-  <ul class="spaced">
-    <li>Approximately 300 digitized lineage trees from cells with unknown potentiality (mixture HSC and MPP).</li>
-    <li>A further 300 digitized lineage trees from cells with known potentiality (MPP).</li>
+  <ul class="spaced" style="margin-top:5%">
+    <li>Rich data set contributed by the Schroeder Lab, to appear in
+    upcomming paper by Tanja Stadler, Stavroula Skylaki, Konstantinos
+    Kokkaliaris and Timm Schroeder.</li>
+    <li class="fragment">Contains approximately 300 digitized lineage trees from cells with
+    unknown potentiality (mixture HSC and MPP).</li>
+    <li class="fragment">A further 300 digitized lineage trees from cells with known
+    potentiality (MPP).</li>
+
+    <li class="fragment">Used a single MCMC analysis to sample from the joint
+      posterior of unknown root cell types and model parameters conditional on
+      combined set of $\sim$600 lineage trees and known root cell types.</li>
   </ul>
   
 </section>
@@ -191,16 +202,16 @@ reveal:
   <h2>Results: Cell type posteriors</h2>
 
   <!-- Root type posteriors -->
-  <img data-src="HSC_probs.png" style="box-shadow:none;width:100%">
+  <img class="fragment" data-src="HSC_probs.png" style="box-shadow:none;width:100%">
 
-  <div style="width:45%;float:left">
+  <div class="fragment" style="width:45%;float:left">
   <img data-src="posterior_HSC_count.png" style="box-shadow:none;width:100%;margin-top:-1em">
   </div>
 
-  <div style="width:50%;float:right">
+  <div class="fragment" style="width:50%;float:right">
     <ul>
       <li>67 of 292 "unknown" cells classified HSC with >0.95 posterior probability.</li>
-      <li>Assuming 50% are actually HSC (and that the classification is correct), power is $\sim 0.46$.</li>
+      <l class="fragment" >Assuming 50% are actually HSC (and that the classification is correct), power is $\sim 0.46$.</li>
     </ul>
   </div>
 
