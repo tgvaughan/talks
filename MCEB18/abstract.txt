@@ -1,0 +1,31 @@
+An MCMC algorithm for Bayesian inference of hard polytomies
+
+Modern phylogenetic inference methods are almost exclusively
+restricted to the inference of binary trees, in which every ancestral
+node has exactly two offspring.  This limitation explicitly precludes
+study of hard polytomies: true multifurcations resulting from, for
+example, near-instantaneous bursts of speciation (in the
+macroevolutionary context) or infection (in the epidemiological
+context).
+
+In this talk, I will present a novel Markov chain Monte Carlo (MCMC)
+algorithm for sampling the space of phylogenetic time trees under
+models that allow for hard polytomies. This algorithm is implemented
+as an extension of the BEAST 2 phylogenetic inference platform [1],
+and can be combined with existing molecular substitution models for
+application to a wide variety of molecular data sets.  So far the
+sampler has been applied to Bayesian inference under the
+Lambda-coalescent [2,3]: a generalization of the Kingman coalescent
+supporting multiple mergers of ancestral lineages.
+
+After demonstrating the ability of the algorithm to correctly recover
+known polytomies from genetic data sets simulated under a
+Lambda-coalescent model, I will discuss a preliminary application of
+the algorithm to the joint inference of polytomies and model
+parameters from publicly-available Ebola virus genomes sampled from
+the Kailahun district of Sierra Leone during the 2014-2015 West
+African Ebola virus epidemic.
+
+[1] Bouckaert et al., PLoS Comput Biol, 2014
+[2] Pitman, Annals of Probability, 1999
+[3] Sagitov, Journal of Applied Probability, 1999

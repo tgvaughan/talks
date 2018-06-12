@@ -1,0 +1,453 @@
+---
+title: An MCMC algorithm for Bayesian inference of hard polytomies
+meeting: Mathematical and Computational Evolutionary Biology
+date: 2018-06-15
+category: talk
+
+layout: presentation
+
+reveal:
+    theme: theme.css
+    slideNumber: true
+    history: true
+---
+
+<section class="titlepage">
+  <div class="subtitle">
+    When binary trees are insufficient: 
+  </div>
+  <div class="title">
+    Bayesian phylodynamics in the presence
+    of superspreading events
+  </div>
+
+  <div class="authors">Tim Vaughan, Oliver Pybus, Tanja Stadler</div>
+  <div class="institution">Stadler Group, D-BSSE, ETH Z&uuml;rich </div>
+
+  <div class="date">
+    cEvo Minisymposium, 12<siup>th</sup> June, 2018
+  </div>
+
+  <div>
+  <img data-src="cEvo_logo.png" style="width:200px;box-shadow:none;margin-top:5%">
+  <img data-src="bsse_logo.gif" style="width:200px;box-shadow:none;margin-top:5%">
+  <img data-src="eth_logo.png" style="width:200px;box-shadow:none;margin-top:5%">
+  </div>
+</section>
+
+<section>
+  <h1>Recap: What are polytomies?</h1>
+
+  <p> Polytomies are features of phylogenetic trees: internal nodes with more than two children, also known as multifurcations.</p>
+
+  <img data-src="polytomy.svg" style="width:60%"/>
+
+  <p style="margin-top:0em">These can represent two different things:</p>
+  <ul>
+    <li><b>Soft</b> polytomies merely represent an inability to resolve the order of speciation/birth events due to insufficient data.
+      <li><b>Hard</b> polytomies represent a true or nearly true multifurcation of the parent species/transmission lineage.
+  </ul>
+
+  <p>We are interested in hard polytomies here.</p>
+</section>
+
+<section>
+  <h1>When may polytomies occur?</h1>
+
+  <dl>
+    <li><dt>Gene tree context:</dt>
+      <dd>Some marine species are known to have "sweepstakes reproductive success", meaning that offspring distributions have extremely high variance.</dd></li>
+    <li><dt>Transmission tree context:</dt>
+      <dd>Super-spreading <i>events</i> where single individuals "instantaneously" produce a large number of secondary infections.</dd></li>
+    <li><dt>Species trees:</dt>
+      <dd>Simultaneous speciation events.  Has been hypothesized several times in the literature.</dd></li>
+</section>
+
+<section>
+  <h1>Polytomies in sampled trees?</h1>
+
+  <p>Consider a population in which the distribution for the number of offspring $m$ is such that $P(m>2)>0$.</p>
+
+  <ul>
+    <li>In complete trees, polytomies will appear whenever the number
+    of offspring exceeds 2.</li>
+    <li>In sampled trees, polytomies will occur with vanishingly small probability.</li>
+  </ul>
+
+  <img data-src="sampled_polytomies.svg" style="width:40%"/>
+
+  <p> $\implies$ Require offspring distribution such that $P(m>fN)$ is significant.</p>
+  
+</section>
+
+<section>
+  <h1>Modelling polytomy generation</h1>
+
+  At the moment there appear to be two obvious routes:
+
+  <br>
+  <br>
+
+  <ul>
+    <li><b>Birth-death models:</b><br>
+      Augment exsting birth-death models to include higher order birth events:
+
+      $$X \overset{\lambda_k}{\longrightarrow}(k+1) X$$
+
+      <br>
+
+      $$X \overset{\mu}{\longrightarrow} 0$$
+    </li>
+
+    <li><b>Coalescent models:</b><br>
+      The traditional coalescent excludes polytomies (almost surely).  Under the WF model, this is because higher order coalescences occur with probability $O(1/N^2)$ or lower.
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h1>The $\Lambda$-Coalescent</h1>
+
+  <ul class="spaced">
+    <li>Introduced by Sagitov (1999) and Pitman (1999).</li>
+  <li>Given $n$ extant lineages, each $k$-tuple of lineages undergoes coalescence at a rate
+
+    $$\lambda_{n,k} = \int_0^1 x^{k-2}(1-x)^{n-k}\Lambda(dx)$$
+
+    where $\Lambda$ is a distribution on $[0,1]$.</li>
+    <li>Total coalescence rate is therefore:
+      $$\lambda_{\mathrm{tot}} = \sum_{k=2}^{n}\binom{n}{k}\lambda_{n,k}$$</li>
+
+    <li>Regular coalescent corresponds to the case when $\Lambda(x)=\delta(x)$.</li>
+    </ul>
+
+</section>
+
+<section>
+  <h1>The $\Lambda$-Coalescent (ctd.)</h1>
+
+  <ul>
+    <li>Pitman (1999) derived the coalescent rates using a very general argument.</li>
+    <li>Requires only that the inclusion of lineages in a merger event
+    is determined by exchangeable Bernoulli trials.</li>
+    <li>Together with a consistency requirement:
+      $$\lambda_{n,k} = \lambda_{n+1,k} + \lambda_{n+1,k+1}$$
+      and de Finetti's theorem, the rates must be those quoted on the previous slide.</li>
+    <li>Equivalent to selecting $k-2$ of each of the $n-2$ remaining lineages with probability $x\sim\Lambda(x)$.</li>
+    <li>Note that these "rates" are probabilities conditional on a pairwise coalescence occuring. The event rate per generation is $c_N$: the per-generation pairwise coalescence probability.</li>
+  </ul>
+    
+</section>
+
+<section>
+  <h1>The Wright-Fisher Process</h1>
+
+  <p>Every generation constrained to have the same size.</p>
+
+  <img data-src="WF.svg" style="width:100%">
+
+</section>
+
+<section>
+  <h1>The Galton-Watson Process</h1>
+
+  <p>Every individual produces an i.i.d. number of offspring, with $\mathbb{E}[m]>1$.</p>
+
+  <img data-src="GW.svg" style="width:100%">
+
+  <p>Constraint: Each new generation is sampled (without replacement) from
+  the intermediate generation.</p>
+
+</section>
+
+<section>
+  <h1>The $\beta$-Coalescent</h1>
+
+  <p>When the probability of $\geq n$ offspring decays as $1/n^{\alpha}$, the
+    coalescent limit yields <a class="cite">(Schweinsberg 2003)</a>
+    a $\Lambda$-coalescent with:
+    $$\Lambda(x) = \frac{x^{1-\alpha}(1-x)^{\alpha-1}}{B(2-\alpha,\alpha)}$$
+    where $B(q,r) = \Gamma(q)\Gamma(r)/\Gamma(q+r)$</p>
+
+  <p>This implies that the coalescent rates become
+    $$\lambda_{n,k} = \frac{B(k-\alpha,n-k+\alpha)}{B(2-\alpha,\alpha)}$$</p>
+  
+
+  <p>Taking the limit $\alpha\rightarrow 2$ yields the Kingman coalescent.</p>
+
+    <p>Time is measured in units of $N/\sigma^2\equiv N_e$ generations, where $\sigma^2$ is the variance of the offspring distribution.</p>
+</section>
+
+<section>
+  <h1>Simulating $\beta$-coalescent trees</h1>
+
+  <ol class="spaced">
+    <li>Pre-compute all coalescent rates $\binom{n}{k}\lambda_{n,k}$.</li>
+    <li>Store as cumulative rate distributions.</li>
+    <li>Makes Gillespie algorithm for tree generation trivial and efficient.</li>
+  </ol>
+</section>
+<section>
+  <h1>Simulating $\beta$-coalescent trees</h1>
+  <p>$\alpha=2.0$ (regular coalescent):</p>
+  <img data-src="simtree_alpha2.svg" style="width:70%">
+</section>
+
+<section>
+  <h1>Simulating $\beta$-coalescent trees</h1>
+  <p>$\alpha=1.5$</p>
+
+  <img data-src="simtree_alpha1.5.svg" style="width:70%">
+</section>
+
+<section>
+  <h1>Simulating $\beta$-coalescent trees</h1>
+  <p>$\alpha=1.0$</p>
+
+  <img data-src="simtree_alpha1.svg" style="width:70%">
+</section>
+
+<section>
+  <h1>The $\beta$-coalescent density</h1>
+
+  <ul>
+    <li>Use the same cumlulative rate distributions for this computation.</li>
+    <li>Transforming time $dt = dt'/N_e(t')$ allows us to account for population dynamics.</li>
+    <li>For a given tree, the likelihood for $\alpha$ seems close to true values.</li>
+  </ul>
+
+  <img data-src="likelihoods.png" style="width:100%">
+</section>
+
+<section>
+  <h1>Inference Strategy</h1>
+
+  <p>Usual phylogenetic posterior:</p>
+  
+    <blockquote style="width:100%">
+      $$P(T,\mu,\theta,\alpha|A) = \frac{1}{P(A)} P(A|T,\mu)P(T|N_e,\alpha)P(\mu,N_e,\alpha)$$
+    </blockquote>
+
+    <ul>
+      <li>$P(T|N_e,\alpha)$ is the $\Lambda$-coalescent tree prior:
+        $$\prod_i\frac{\lambda_{n_i,k_i}}{N_e}\exp\left[-\frac{\tau_i}{N_e}\sum_{k'=2}^{n_i}\binom{n_i}{k'}\lambda_{n_i,k'}\right]$$
+      </li>
+      <li>$P(\mu,N_e,\alpha)=P(\mu)P(N_e)P(\alpha)$ are the parameter priors.</li>
+    </ul>
+
+    <br>
+
+    <p> Space of trees with (potential) polytomes $\neq$ space of binary trees. </p>
+    <p> Need a reversible-jump MCMC algorithm to sample time trees under this model.</p>
+</section>
+
+<section>
+  <h1>Proposal distributions:<br> Subtree Prune+Regraft</h1>
+
+  <img data-src="proposal_SPR.svg" style="width:100%">
+
+  <p>Tuning parameters:</p>
+  <ul>
+    <li>Exponential rate for root attachments.</li>
+    <li>Coalescent attachment probability.</li>
+  </ul>
+</section>
+
+<section>
+  <h1>Proposal distributions:<br> Narrow Exchange</h1>
+
+  <img data-src="proposal_NX.svg" style="width:100%">
+
+</section>
+
+<section>
+  <h1>Proposal distributions:<br> Subtree Slide</h1>
+
+  <img data-src="proposal_SS.svg" style="width:100%">
+
+  <p>Tuning parameters:</p>
+  <ul>
+    <li>Rate for non-coalescent attachment..</li>
+    <li>Coalescent attachment probability.</li>
+  </ul>
+</section>
+
+<section>
+  <h1>Proposal distributions:<br> Expand/Collapse</h1>
+
+  <img data-src="proposal_XC.svg" style="width:100%">
+
+  <p>Tuning parameters:</p>
+  <ul>
+    <li>Exponential rate for expantion above root.</li>
+  </ul>
+</section>
+
+<section>
+  <h1>Validation: Sampling from prior</h1>
+
+  <img data-src="prior_sampling_heights.png" style="width:45%;padding-top:0;">
+  <img data-src="prior_sampling_polytomies.png" style="width:45%;padding-top:0;">
+</section>
+
+<section>
+  <h1>Validation: Inference from simulated data</h1>
+
+  <div style="margin-top:-1em">
+  <img data-src="simulated_truth.png" style="width:33%">
+  <img data-src="simulated_inference.png" style="width:33%">
+  </div>
+
+  <p style="margin-top:-1em">How best to summarize tree distributions with polytomies?</p>
+</section>
+
+<section>
+  <h1>Validation: Inference from simulated data</h1>
+
+  <img data-src="alpha_posteriors_clock_fixed.png" style="width:100%">
+</section>
+
+<section>
+  <h1>Validation: Inference from simulated data</h1>
+
+  <img data-src="alpha_posteriors_clock_inferred.png" style="width:100%">
+</section>
+
+<section>
+  <h1>Investigation: does structure confound inference of $\alpha$?</h1>
+
+  <p style="margin-bottom:0.5em">Simulation study:</p>
+
+  <ul class="spaced">
+    <li>Simulated trees with 60 taxa under the 3-deme structured coalescent (equal population sizes and migration rates, even leaf distribution among types).</li>
+    <li>Varied migration rate from very low (highly structured trees) to very high (no discernable structure).</li>
+    <li>Simulated sequences down each tree to produce alignments.</li>
+    <li>Analyzed each alignment under the beta-coalescent.</li>
+    </ul>
+</section>
+
+<section>
+  <h1>Example structured trees</h1>
+
+  <img data-src="structured_tree_0.1.png" style="width:45%">
+  <img data-src="structured_tree_1.6.png" style="width:45%">
+</section>
+
+<section>
+  <h1>Inferred beta-coalescent parameters</h1>
+
+  <img data-src="structure_comparison.png" style="width:100%">
+
+  <p style="margin-top:-0.5em">$\implies$ little/no confusion between structure and multifurcation?</p>
+</section>
+
+<section>
+  <h1>BEAST package</h1>
+
+
+  <ul class="spaced" style="margin-top:5%">
+    <li>Pitchfork: <a href="http://github.com/tgvaughan/pitchfork">github.com/tgvaughan/pitchfork</a></li>
+    <li>Easy BEAUti interface, integrates with other models easily.</li>
+    <li>Infer $\alpha$ and (parametric) population dynamics jointly together with multifurcating trees.</li>
+    <li>Help identify superspreading in transmission trees?</li>
+  </ul>
+</section>
+
+<section>
+  <h1>Application to Ebola</h1>
+
+  <ul>
+    <li>Gytis Dudas et al. <a class="cite">(Nature, 2017)</a> have published a curated set of 1610 Ebola virus genomes sampled during the 2014-2015 West African outbreak.</li>
+    <div style="text-align:center">
+      <iframe width="500" height="300" src="https://www.youtube.com/embed/j4Ut4krp8GQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+    <li>Restrict analysis to oubtreak within the Kailahun region.</li>
+    <li>How do results from inference under the Beta-coalescent differ from results inferred under classic birth-death models?</li>
+  </ul>
+</section>
+
+<section>
+  <h1>Application to Ebola</h1>
+
+  <img data-src="ebola_nopoly.png" style="width:80%">
+  <p>Tree inferred under stochastic SIR birth-death model.</p>
+</section>
+
+<section>
+  <h1>Application to Ebola</h1>
+
+  <img data-src="ebola_poly.png" style="width:80%">
+  <p>Tree inferred under constant-$N_e$ Beta-coalescent model.</p>
+</section>
+
+<section>
+  <h1>Application to Ebola</h1>
+
+  <img data-src="alpha_ucldMean_posterior_ebov.png" style="width:60%">
+</section>
+
+<section>
+  <h1>Steps necessary for "serious" phylodynamic analyses</h1>
+
+  <ul class="spaced" style="margin-top:5%">
+    <li>Account for structure and population dynamics.</li>
+    <li>Allow for mixture of offspring distributions:
+      $$\Lambda(x) = p_0\delta(x) + (1-p_0)Beta(2-\alpha,\alpha)(x)$$</li>
+    <li>Apply a spike and slab prior to $p_0$: allows for posterior probability
+      on the presence of non-Kingman dynamics.</li>
+  </ul>
+</section>
+
+<section>
+  <h1>Summary</h1>
+  
+  <ul class="spaced">
+
+    <li>Populations where individuals may occasionally produce a significant portion of the following generation lead to the possibility of observable polytomies in sampled trees.</li>
+
+    <li>Bayesian phylogenetic inference under such models can be performed using a reversible-jump MCMC algorithm.</li>
+
+    <li>Numerical results suggest that it is possible to recover parameters of the offsping distribution from genetic data.</li>
+
+    <li>Analysis of Ebola virus data shows that this model predicts transmission trees with multiple polytomies, although interpretation requires care.</li>
+  </ul>
+</section>
+
+<section>
+  <h1>Future plan: Development of birth-death model</h1>
+
+  <p style="font-size:0.8em"> Consider the following birth/death model:
+      $$X \overset{\lambda_m(x)}{\longrightarrow} (m+1)X$$
+      $$X \overset{\mu}{\longrightarrow} 0$$
+    where
+    $$\lambda_m(x)=\lambda e^{-x}\frac{x^m}{m!}$$
+    </p>
+
+  <p style="font-size:0.8em">The probability of an individual at time $t$ in the past giving rise to $i$ lineages in the present $p_i(t)$ is:
+  \begin{align}
+  \frac{d}{dt}p_0(t) &= -(\lambda+\mu)p_0(t) + \mu + \lambda e^{x(p_0(t)-1)}p_0(t)\\
+  \frac{d}{dt}p_1(t) &= -(\lambda+\mu)p_1(t) + \lambda(x p_0(t)+1)e^{x(p_0(t)-1)}p_1(t)
+  \end{align}
+  </p>
+
+  <p style="font-size:0.8em">Sadly I can't find an analytical solution to these.  Thus we need numerical integration.</p>
+</section>
+
+
+<section>
+  <h1>Acknowledgements</h1>
+
+  <div class="figure" style="width:100%;text-align:center">
+    <img data-src="cevo_people.jpg" style="width:60%;text-align:center">
+    <p style="font-size:0.8em; text-align:center; margin-top:-0.5em">Tanja Stadler and the Computational Evolution (cEvo) Group</p>
+  </div>
+
+  <div class="figure" style="width:45%;float:left">
+    <img data-src="patrick.jpg" style="height:150px"><br>
+    <p style="font-size:0.8em; text-align:center; margin-top:-0.5em">Patrick Hoscheit</p>
+  </div>
+  <div class="figure" style="width:45%;float:right">
+    <img data-src="oli.jpg" style="height:150px">
+    <p style="font-size:0.8em; text-align:center; margin-top:-0.5em">Oliver Pybus</p>
+  </div>
+</section>

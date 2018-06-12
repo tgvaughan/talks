@@ -1,0 +1,118 @@
+---
+---
+
+// Default mixins and settings -----------------
+@import "mixins";
+@import "settings";
+// ---------------------------------------------
+
+
+// Include theme-specific fonts
+@import url({{site.baseurl}}/reveal.js/lib/font/source-sans-pro/source-sans-pro.css);
+
+
+$themeColor: #22a;
+                 
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #fff;
+
+$mainColor: #222;
+$headingColor: #222;
+
+$citeColor: red;
+
+$mainFontSize: 32px;
+$mainFont: 'Source Sans Pro', Helvetica, sans-serif;
+$headingFont: 'Source Sans Pro', Helvetica, sans-serif;
+$headingColor: $backgroundColor;
+$headingBackgroundColor: $themeColor;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: none;
+$headingFontWeight: 600;
+$linkColor: #2a76dd;
+$linkColorHover: lighten( $linkColor, 15% );
+$selectionBackgroundColor: lighten( $linkColor, 25% );
+
+$heading1Size: 2.0em;
+$heading2Size: 1.8em;
+$heading3Size: 1.5em;
+$heading4Size: 1.0em;
+
+section.has-dark-background {
+	&, h1, h2, h3, h4, h5, h6 {
+		color: #fff;
+	}
+}
+
+
+// Theme template ------------------------------
+@import "theme";
+// ---------------------------------------------
+
+section.titlepage .title {
+    color: $backgroundColor;
+    background-color: $themeColor;
+    font-family: $mainFont;
+    font-size: 1.8em;
+    font-weight: bold;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+section.titlepage .authors {
+    font-size: 1em;
+    font-weight: normal;
+
+    padding-top: 1em;
+}
+
+section.titlepage .institution {
+    padding-top: 1em;
+}
+
+section.titlepage .date {
+    padding-top: 1em;
+}
+
+.reveal p {
+    text-align: left;
+    margin-bottom: 0em;
+}
+
+a.cite {
+    font-size: 0.8em;
+    color: $citeColor;
+}
+
+a.cite:hover {
+    font-size: 0.8em;
+    color: $citeColor;
+}
+
+.reveal blockquote {
+    background: $themeColor;
+    color: $backgroundColor;
+    font-style: normal;
+}
+
+.spaced li:not(:first-child) {
+    padding-top: 1em;
+}
+
+.reveal section img {
+    border: none;
+    box-shadow: none;
+}
+
+
+.reveal blockquote.textbox {
+    background: $backgroundColor;
+    color: $mainColor;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.reveal blockquote > div.title {
+    color: $backgroundColor;
+    background: $themeColor;
+    text-align: center;
+}
