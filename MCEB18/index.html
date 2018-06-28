@@ -2,7 +2,7 @@
 title: An MCMC algorithm for Bayesian inference of hard polytomies
 meeting: Mathematical and Computational Evolutionary Biology
 date: 2018-06-15
-category: draft
+category: talk
 
 layout: presentation
 
@@ -13,19 +13,15 @@ reveal:
 ---
 
 <section class="titlepage">
-  <div class="subtitle">
-    When binary trees are insufficient: 
-  </div>
   <div class="title">
-    Bayesian phylodynamics in the presence
-    of superspreading events
+    An MCMC algorithm for Bayesian inference of hard polytomies
   </div>
 
   <div class="authors">Tim Vaughan, Oliver Pybus, Tanja Stadler</div>
   <div class="institution">Stadler Group, D-BSSE, ETH Z&uuml;rich </div>
 
   <div class="date">
-    cEvo Minisymposium, 12<siup>th</sup> June, 2018
+    MCEB, 27<siup>th</sup> June, 2018
   </div>
 
   <div>
@@ -83,9 +79,6 @@ reveal:
 <section>
   <h1>Modelling polytomy generation</h1>
 
-  At the moment there appear to be two obvious routes:
-
-  <br>
   <br>
 
   <ul>
@@ -179,29 +172,20 @@ reveal:
 </section>
 
 <section>
-  <h1>Simulating $\beta$-coalescent trees</h1>
-
-  <ol class="spaced">
-    <li>Pre-compute all coalescent rates $\binom{n}{k}\lambda_{n,k}$.</li>
-    <li>Store as cumulative rate distributions.</li>
-    <li>Makes Gillespie algorithm for tree generation trivial and efficient.</li>
-  </ol>
-</section>
-<section>
-  <h1>Simulating $\beta$-coalescent trees</h1>
+  <h1>Example $\beta$-coalescent trees</h1>
   <p>$\alpha=2.0$ (regular coalescent):</p>
   <img data-src="simtree_alpha2.svg" style="width:70%">
 </section>
 
 <section>
-  <h1>Simulating $\beta$-coalescent trees</h1>
+  <h1>Example $\beta$-coalescent trees</h1>
   <p>$\alpha=1.5$</p>
 
   <img data-src="simtree_alpha1.5.svg" style="width:70%">
 </section>
 
 <section>
-  <h1>Simulating $\beta$-coalescent trees</h1>
+  <h1>Example $\beta$-coalescent trees</h1>
   <p>$\alpha=1.0$</p>
 
   <img data-src="simtree_alpha1.svg" style="width:70%">
@@ -235,11 +219,19 @@ reveal:
       <li>$P(\mu,N_e,\alpha)=P(\mu)P(N_e)P(\alpha)$ are the parameter priors.</li>
     </ul>
 
-    <br>
-
     <p> Space of trees with (potential) polytomes $\neq$ space of binary trees. </p>
     <p> Need a reversible-jump MCMC algorithm to sample time trees under this model.</p>
 </section>
+
+<section>
+  <h1>Previous work</h1>
+
+  <ul style="margin-top:20%">
+    <li><a href="" class="cite">Lewis, Holder and Holsinger, Sys Bio, 2005</a> (unrooted trees)</li>
+    <li><a href="" class="cite">Guindon, Guo and Welch, MBE, 2016</a> (spatial continuum model)</li>
+  </ul>
+</section>
+
 
 <section>
   <h1>Proposal distributions:<br> Subtree Prune+Regraft</h1>
@@ -304,13 +296,7 @@ reveal:
 <section>
   <h1>Validation: Inference from simulated data</h1>
 
-  <img data-src="alpha_posteriors_clock_fixed.png" style="width:100%">
-</section>
-
-<section>
-  <h1>Validation: Inference from simulated data</h1>
-
-  <img data-src="alpha_posteriors_clock_inferred.png" style="width:100%">
+  <img data-src="alpha_posteriors.png" style="width:100%">
 </section>
 
 <section>
