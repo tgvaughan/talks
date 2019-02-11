@@ -72,7 +72,7 @@ reveal:
 
   <img data-src="sampled_polytomies.svg" style="width:40%"/>
 
-  <p> $\implies$ Require offspring distribution such that $P(m>fN)$ is significant.</p>
+  <p> $\implies$ Require offspring distribution such that number of sampled polytomies is significant.</p>
   
 </section>
 
@@ -290,7 +290,6 @@ reveal:
   <img data-src="simulated_inference.png" style="width:33%">
   </div>
 
-  <p style="margin-top:-1em">How best to summarize tree distributions with polytomies?</p>
 </section>
 
 <section>
@@ -381,6 +380,8 @@ reveal:
       $$\Lambda(x) = p_0\delta(x) + (1-p_0)Beta(2-\alpha,\alpha)(x)$$</li>
     <li>Apply a spike and slab prior to $p_0$: allows for posterior probability
       on the presence of non-Kingman dynamics.</li>
+    <li>These steps are complicated by the dependence of the $\beta$-coalescent timescale
+      on the offspring distribution through $\alpha$.
   </ul>
 </section>
 
@@ -400,7 +401,7 @@ reveal:
 </section>
 
 <section>
-  <h1>Future plan: Development of birth-death model</h1>
+  <h1>Work in progress: Development of birth-death model</h1>
 
   <p style="font-size:0.8em"> Consider the following birth/death model:
       $$X \overset{\lambda_m(x)}{\longrightarrow} (m+1)X$$
