@@ -1,0 +1,358 @@
+---
+title: Inferring viral reassortment networks
+meeting: Methods and Beers #11 - Making Connections
+date: 2019-10-10
+category: draft
+
+layout: presentation
+
+reveal:
+    theme: theme.css
+    slideNumber: true
+    history: true
+---
+
+<section class="titlepage">
+  <div class="title">
+    <div class="subtitle">When a tree is not enough:</div>
+    Inferring Viral Reassortment Networks
+  </div>
+
+  <div class="authors">Nicola Müller, <u>Tim Vaughan</u>, Tanja Stadler</div>
+  <div class="institution">Stadler Group, D-BSSE, ETH Z&uuml;rich </div>
+
+  <div class="date">
+    Methods and Beers #11 - Making Connections, 10<sup>th</sup> October, 2019
+  </div>
+
+  <div>
+  <img data-src="cEvo_logo.png" style="width:200px;box-shadow:none;margin-top:5%">
+  <img data-src="bsse_logo.gif" style="width:200px;box-shadow:none;margin-top:5%">
+  <img data-src="eth_logo.png" style="width:200px;box-shadow:none;margin-top:5%">
+  </div>
+</section>
+
+<section>
+  <h1>The Influenza Virus</h1>
+
+  <div class="figure">
+  <img data-src="influenza.gif" style="width:60%">
+  <div class="cite">www.cdc.gov</div>
+  </div>
+  
+</section>
+
+<section>
+  <h1>Viruses with segmented genomes</h1>
+
+  <div style="width:100%;margin-top:1em">
+    <div style="display:inline-block;width:60%;vertical-align:top">
+      <ul class="spaced">
+        <li>To date, 11 distinct families of segmented viruses have been described.</li>
+        <li>Specific examples include:
+          <ul>
+            <li>Lassa virus (2 segments)</li>
+            <li>Influenza virus (8 segments)</li>
+            <li>Rotavirus (11 segments)</li>
+          </ul>
+        </li>
+        <li>Reassortment known to play an important role in the generation of new strains
+          (e.g. 2009 Swine flu outbreak).</li>
+      </ul>
+    </div>
+    <div style="display:inline-block;width:39%;vertical-align:top">
+      <img data-src="LassaBoy.png" style="width:100%">
+      <div class="cite" style="margin-top:-1em">Wikipedia</div>
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <h1>Reassortment</h1>
+
+  <div>
+    <div style="display:inline-block; width:60%;vertical-align:top; margin-top:2em">
+      <ul class="spaced">
+        <li>A single cell may be coinfected by multiple viruses,
+        potentially of different strains.</li>
+        <li>Genome segments from different "parent" virions may be
+        packaged into the same "daughter" virion.
+        <li>For influenza, this is an important source of genetic diversity.</li>
+      </ul>
+    </div>
+    <div style="display:inline-block; width:35%;vertical-align:top">
+      <img data-src="antigenic_shift.svg" style="width:100%"/>
+      <div class="cite">Wikipedia</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h1>Reassortment vs Recombination</h1>
+
+  <div>
+    <img data-src="Meiosis_Overview_new.svg" style="width:80%">
+    <div class="cite" style="text-align:right">Wikipedia</div>
+  </div>
+</section>
+
+<section>
+  <h1>Phylogenetic consequences</h1>
+
+  <div>
+    <img data-src="SegmentTrees.jpg" style="width:90%">
+    <div class="cite">Westgeest et al., J. Virol., 2014</div>
+    <!-- <img data-src="GiRaF.jpg" style="width:80%"> -->
+    <!-- <div class="cite">Nagarajan and Kingsford, Nuc. Acid. Res., 2011</div> -->
+  </div>
+
+</section>
+
+<section>
+  <h1>Research questions</h1>
+  <div style="width:100%; text-align:center">
+    <img data-src="einstein.png" style="width:20%">
+  </div>
+
+  <ul class="spaced">
+    <li>How well can we pin-point reassortment events using genetic data?</li>
+    <li>How frequently does reassortment occur in different viruses?</li>
+    <li>For zoonotic viruses, does host type affect rate?</li>
+  </ul>
+</section>
+
+
+<!-- <section> -->
+<!--   <h1>Current approaches</h1> -->
+
+<!--   <p>Existing phylogenetic approaches to studying reassortment include:</p> -->
+<!--   <ul class="spaced"> -->
+<!--     <li>Use of Tanglegrams to detect topological inconguence -->
+<!--       <ul><li>Westgeet et al., 2014</li></ul> -->
+<!--     </li> -->
+<!--     <li>Use of ancestral state reconstruction -->
+<!--       <ul><li>Lu, Lycett and Brown, PLoS One, 2014</li></ul> -->
+<!--     </li> -->
+<!--   </ul> -->
+
+  
+<!--   <p>Main phylogenetic approaches to "dealing with" reassortment include:</p> -->
+<!--   <ul class="spaced"> -->
+<!--     <li>Restriction of phylogenetic analyses to single segments</li> -->
+<!--   </ul> -->
+<!-- </section> -->
+
+<section>
+  <h1>Traditional approaches</h1>
+
+  <p>Existing approaches to quantitatively inferring the presence and rate of reassortment in viral genomes fall into two groups:</p>
+
+  <dl style="margin-top:1em">
+    <dt>Population genetic approaches</dt>
+    <dd>These look at allele frequency spectra for evidence of reassortment.
+    (E.g. <a href="" class="cite">Leonard et al., PLoS Path., 2017</a>)</dd>
+
+    <dt style="margin-top:0.5em">Phylogenetic comparison approaches</dt>
+    <dd>These attempt to reconstruct reassortment events by comparing inferred segment trees.
+    (E.g. <a href="" class="cite">Svinti et al., BMC Evol. Biol., 2013</a>)</dd>
+  </dl>
+
+</section>
+
+
+<section>
+  <h1>H3N2 Tanglegrams</h1>
+
+  <div>
+    <img data-src="Westgeest_Tanglegram.png" style="width:85%">
+    <div class="cite">Westgeest et al., J. Virol., 2014</div>
+    <!-- <img data-src="GiRaF.jpg" style="width:80%"> -->
+    <!-- <div class="cite">Nagarajan and Kingsford, Nuc. Acid. Res., 2011</div> -->
+  </div>
+
+</section>
+
+<section class="center">
+  <blockquote>
+    Can we develop a more principled, model-based approach to learning
+    about and treating the reassortment process?
+  </blockquote>
+</section>
+
+
+<section>
+  <h1>The Coalescent with Reassortment</h1>
+
+  <div style="width:100%;text-align:center">
+    <img data-src="CwR.svg" style="width:80%">
+  </div>
+</section>
+
+<section>
+  <h1>Proposed coalescent model</h1>
+
+  <p style="margin-top:10%">Model parameters are:</p>
+
+  <ul style="margin-top:1em">
+    <li>Coalescent rate $1/N_e$</li>
+    <li>Per-lineage reassortment rate $\rho$</li>
+  </ul>
+
+  <blockquote style="margin-top:10%">
+  Identical to Hudson's model of coalescent with recombination, but
+  with unordered segments taking the place of the ordered sites.
+  </blockquote>
+      
+</section>
+
+
+<section>
+  <h1>Simulated reassortment network</h1>
+  <img data-src="simulated_CwR_network.svg" style="width:100%">
+</section>
+
+<section>
+  <h1>Comparison with species networks</h1>
+
+  <div style="width:100%;text-align:center;margin-top:5">
+    <div style="display:inline-block;width:49%">
+      <b>Reassortment network</b>
+      <img data-src="CwR.svg" style="height:400px">
+    </div>
+    <div style="display:inline-block;width:49%">
+      <b>Species network</b>
+      <img data-src="species_network.png" style="height:400px">
+      <div class="cite">Zhang et al., MBE, 2017</div>
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <h1>Bayesian Inference</h1>
+
+    Can perform infernece by characterizing the reassortment network posterior:
+
+  <blockquote style="width:100%">
+    $$P(G,\mu,N,\rho|\vec{A}) = \frac{1}{P(\vec{A})}P(\vec{A}|G,\mu)P(G|N,\rho)P(\mu,N,\rho)$$
+  </blockquote>
+
+  <ul>
+    <li>$\vec{A}$ is the vector of segment alignments.</li>
+    <li>$G$ is the segment network, displaying segment trees $\vec{T}$.</li>
+    <li>$P(\vec{A}|G,\mu)$ is the likelihood of the network and is easily expressed as a product over segment trees:
+      $$P(\vec{A}|G,\mu)=\prod_i P(A_i|T_i,\mu).$$</li>
+    <li>$P(G|N,\rho)$ is the network prior under the coalescent with reassortment model.</li>
+  </ul>
+
+</section>
+
+<section class="center">
+  <blockquote>Can we perform MCMC on the space of reassortment
+  networks to characterize this posterior?</blockquote>
+  </section>
+
+<section>
+  <h1>Reason for Hope</h1>
+
+  <div style="text-align:center;width:100%">
+    <img data-src="CwR2.svg" style="width:40%">
+  </div>
+  <p><b>Observed reassortment rate</b> diminishes as more reassortments occur: hugely reduced state space when only small numbers of segments are considered.</p>
+</section>
+
+<section>
+  <h1>MCMC algorithm kernel</h1>
+
+  <img data-src="addRemove_schem.svg" style="width:100%;margin-top:5%">
+
+  <ul>
+    <li>Easy to show this is universal.</li>
+    <li>Other operators also necessary to make this efficient.</li>
+  </ul>
+
+</section>
+
+<section>
+  <h1>Validation: Sampling from the prior</h1>
+
+  <div style="margin-top:5%">
+    <img data-src="5tax2seg.png" style="width:45%">
+    <img data-src="5tax2seg_count.png" style="width:45%">
+  </div>
+
+</section>
+
+<section>
+  <h1>Validation: Inference from data</h1>
+
+  <div style="margin-top:5%">
+    <img data-src="Simulation.png" style="width:80%">
+  </div>
+
+</section>
+
+<section>
+  <h1>Application to Influenza</h1>
+
+  <div>
+    <img data-src="influenza_results.png" style="width:100%">
+  </div>
+</section>
+
+<section>
+  <h1>Fitness dependence</h1>
+
+  <div>
+    <img data-src="influenza_results_fitness.png" style="width:80%">
+  </div>
+</section>
+
+<section>
+  <h1>BEAST 2 Package: CoalRe</h1>
+
+  <ul class="spaced" style="margin-top:10%">
+    <li>Coalescent with reassortment model implemented as the BEAST 2 package CoalRe.</li>
+    <li>Usage tutorial available at:<br>
+      <a href="https://taming-the-beast.org/tutorials/Reassortment-Tutorial/">taming-the-beast.org/tutorials/Reassortment-Tutorial</a></li>
+    <li>Preprint describing model and Influenza results available at:
+      <a href="https://www.biorxiv.org/content/10.1101/726042v1">www.biorxiv.org/content/10.1101/726042v1</a></li>
+  </ul>
+</section>
+
+<section>
+  <h1>Acknowledgements</h1>
+
+  <ul style="margin-top:0%">
+    <li> Nicola Müller: lead author and principle developer</li>
+    <li> Ugnė Stolz: testing and extension to structured populations</li>
+    <li> Gytas Dudas: viral phylodynamics expert</li>
+    <li> Tanja Stadler: project supervision</li>
+    <li> The rest of the cEvo group!</li>
+  </ul>
+
+  <img data-src="cEvo_group.jpg" style="width:50%"/>
+</section>
+
+<!--
+ * What is reassortment: flu example
+
+ * Why is it important?
+ 
+ * Comparison with recombination
+
+ * Current approaches to reassortment detection
+ 
+ * Coalescent with Reassortment: model-based approach
+
+ * Inference using MCMC
+
+ * Asside: Why does this method work so well?
+
+ * Influenza study results: fitness benifits of reassortment
+
+ * The CoalRe BEAST Package
+
+ * Demonstration of software use
+-->
